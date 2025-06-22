@@ -2,7 +2,7 @@
 
 html{
     font-size: 16px; /* Bezugsgröße: Aufrufbar als 1rem, bzw so skalierbar. */
-    font-family: sans-serif; /* Sans-serif ist Arial, andere Optionen Helvetica, Fira Sans, Noto Sans, etc. */
+    font-family: 'Noto Sans', sans-serif; /* Sans-serif ist Arial, andere Optionen Helvetica, Fira Sans, Noto Sans, etc. */
 }
 
 /* Größeneinheiten:
@@ -82,7 +82,6 @@ button:hover {
 /* Standard-Stil für Beschreibungstexte. */
 .description {
     font-size: 1.0rem;
-    color: #666;
     margin-bottom: 20px;
 }
 
@@ -104,7 +103,7 @@ button:hover {
     height: 35px;
     display: flex;
     align-items: center;
-    width: 100px;
+    width: 150px;
     font-size: 1.0rem;
 }
 .input-field {
@@ -114,6 +113,7 @@ button:hover {
     flex-grow: 0;
     width: 150px;
     font-size: 1rem;
+    margin-left: auto;
 }
 .input-dropdown {
     height: 35px;
@@ -125,6 +125,7 @@ button:hover {
     flex-shrink: 0;
     width: auto;
     font-size: 0.9em;
+    margin-left: auto;
 }
 
 /* Stile für die Ausgabe. */

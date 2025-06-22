@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Kennlinie Tellerfedern</title>
+
+    <!-- Titel wird als Bezeichnung im Tab des Browsers verwendet -->
+
+    <title>Browser Rechner: Tellerfeder</title>
+
+    <!-- Laden von Noto Sans von Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Link zu meinem CSS-Dokument -->
 
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Einbinden der Plot-Bibliothek -->
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
 
 </head>
 
-<body> <div id="eingabeContainer" class="container-standard">
+<body> 
+    
+    <!-- Tatsächliche Seitenelemente -->
+
+    <div id="eingabeContainer" class="container-standard">
         <h1>Eingaben</h1>
         <div class="description">
             Test für Git.
@@ -17,7 +34,7 @@
 
         <div class="input-group">
             <div class="input-description">Titel der Berechnung:</div>
-            <input type="text" id="eingabe_Titel" class="input-field" placeholder="Optional">
+            <input type="text" id="eingabe_Titel" class="input-field" placeholder="Optional" style="width:400px;">
         </div>
 
         <div class="line-with-text-left"><h2>Geometrie</h2></div>
@@ -33,7 +50,7 @@
         </div>
 
         <div class="input-group">
-            <div class="input-description">Gruppenwahl</div>
+            <div class="input-description">Tellefedergruppe</div>
             <div class="radio-group-container">
 
                 <input type="radio" id="radio12" name="gruppenwahl" checked>
@@ -94,24 +111,14 @@
             <input type="text" id="eingabe_stapel_i" class="input-field" placeholder="Optional">
         </div>
 
-        <div class="line-with-text-left"><h2>Werkstoffdaten</h2></div>
-
-        <div class="input-group">
-            <div class="input-description">Abweichendes E-Modul der Feder:</div>
-            <div class="input-label">E / Nmm-2 =</div>
-            <input type="text" id="eingabe_E" class="input-field" placeholder="Optional">
-        </div>
-
-        <div class="input-group">
-            <div class="input-description">Abweichende Poisson-Zahl (Querkontraktionszahl):</div>
-            <div class="input-label">\mu =</div>
-            <input type="text" id="eingabe_mu" class="input-field" placeholder="Optional">
-        </div>
+        <!-- ------------------------------------------------------------------------------------------- -->
+        <!-- ARBEITSPUNKTE -->
+        <!-- ------------------------------------------------------------------------------------------- -->
 
         <div class="line-with-text-left"><h2>Arbeitspunkt</h2></div>
 
         <div class="input-group">
-            <div class="input-description">Arbeitspunktdefinition</div>
+            <div class="input-description">Definition</div>
             <div class="radio-group-container">
 
                 <input type="radio" id="radioAuswahlFederweg" name="arbeitspunktdefinition" checked>
@@ -129,23 +136,51 @@
         </div>
 
         <div class="input-group">
-            <div class="input-description">Abweichung:</div>
-            <div class="input-label">Punkt 1 =</div>
-            <input type="text" id="eingabe_AP_Abweichung_1" class="input-field" placeholder="Optional">
+
+            <div class="input-description">lol</div>
+
+            <div class="input-label">Abweichung 1</div>
+
             <select id="einheit_AP_Abweichung_1" class="input-dropdown">
                 <option value="mm">mm</option>
                 <option value="percent">%</option>
             </select>
+
+            <input type="text" id="eingabe_AP_Abweichung_1" class="input-field" placeholder="Optional">
+
         </div>
 
         <div class="input-group">
-            <div class="input-description">Abweichung:</div>
-            <div class="input-label">Punkt 2 =</div>
-            <input type="text" id="eingabe_AP_Abweichung_2" class="input-field" placeholder="Optional">
+
+            <div class="input-description">lol</div>
+
+            <div class="input-label">Abweichung 2</div>
+
             <select id="einheit_AP_Abweichung_2" class="input-dropdown">
                 <option value="mm">mm</option>
                 <option value="percent">%</option>
             </select>
+
+            <input type="text" id="eingabe_AP_Abweichung_2" class="input-field" placeholder="Optional">
+
+        </div>
+
+        <!-- ------------------------------------------------------------------------------------------- -->
+        <!-- WERKSTOFFDATEN -->
+        <!-- ------------------------------------------------------------------------------------------- -->
+
+        <div class="line-with-text-left"><h2>Benutzerdefinierte Werkstoffdaten</h2></div>
+
+        <div class="input-group">
+            <div class="input-description">E-Modul des Werkstoffs:</div>
+            <div class="input-label">E / Nmm-2 =</div>
+            <input type="text" id="eingabe_E" class="input-field" placeholder="Optional">
+        </div>
+
+        <div class="input-group">
+            <div class="input-description">Poisson-Zahl (Querkontraktionszahl):</div>
+            <div class="input-label">\mu =</div>
+            <input type="text" id="eingabe_mu" class="input-field" placeholder="Optional">
         </div>
 
         <hr>
@@ -281,6 +316,8 @@
         <button id="zurückButton">Zurück zur Eingabe</button>
         <button id="neueBerechnungButton">Neue Berechnung</button>
     </div>
+
+    <!-- Link zu meinem Java-Script-Dokument -->
 
     <script src="js/main.js" defer></script>
 
