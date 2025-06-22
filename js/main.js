@@ -30,8 +30,8 @@ const ergebnisTitel = document.getElementById('ergebnisContainer_Titel');
 // Eingabe Geometrie.
 const eingabe_Da = document.getElementById('eingabe_Da');
 const eingabe_Di = document.getElementById('eingabe_Di');
-const eingabe_t12 = document.getElementById('eingabe_t12');
-const eingabe_t3 = document.getElementById('eingabe_t3');
+const eingabe_t = document.getElementById('eingabe_t');
+const eingabe_t_strich = document.getElementById('eingabe_t_strich');
 const eingabe_K4 = document.getElementById('eingabe_K4');
 const eingabe_L0 = document.getElementById('eingabe_L0');
 
@@ -89,6 +89,7 @@ let E = 206000;                 // E-Modul mit Default-Wert.
 let mu = 0.3;                   // Poisson-Zahl mit Default-Wert.
 
 let h0;
+let h0_strich;
 let delta;
 let K1;
 let c1;
@@ -299,7 +300,7 @@ function calculate_F3(E, mu, t, K1, De, K4, h0, s) {
 //--------------------------------------------------------------------------\\
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Radio-Elemente "radio12" und radio"3":
+// Radio-Elemente "radio12" und "radio3"
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 radio12.addEventListener('change', updateSichtbarkeitGruppe3);
 radio3.addEventListener('change', updateSichtbarkeitGruppe3);
@@ -308,7 +309,7 @@ radioAuswahlFederkraft.addEventListener('change', updateArbeitspunktEinheiten);
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Button "Ergebnisse anzeigen":
+// Button "Ergebnisse anzeigen"
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 berechneButton.addEventListener("click", function() {
     
@@ -316,6 +317,10 @@ berechneButton.addEventListener("click", function() {
     // Setzt entweder den vom Nutzer gewählten Titel oder einen Default-Titel.
     const titel = eingabe_Titel.value.trim();
     ergebnisTitel.textContent = titel || "Ergebnisse";
+
+    //===============================//
+    // Alternative Materialparameter //
+    //===============================//
 
     // Eingaben holen.
     let custom_E = validateAndParseInputOptional(eingabe_E, 'Werkstoffdaten --> E');
@@ -360,16 +365,17 @@ berechneButton.addEventListener("click", function() {
         return;
     }
 
+    //======================//
+    // Kennlinienberechnung //
+    //======================//
 
-    // Kennlinienberechnung:
-    //
     // Prüfvariable in Kennlinienberechnung zunächst falsch!
     let kennlinie_isValid = false;
     // Abrufen und Validieren der Eingaben.
     const da = validateAndParseInput(eingabe_Da, 'Geometrie --> De');
     const di = validateAndParseInput(eingabe_Di, 'Geometrie --> Di');
     const l0 = validateAndParseInput(eingabe_L0, 'Geometrie --> L0');
-    const t12 = validateAndParseInput(eingabe_t12, 'Geometrie --> t');
+    const t = validateAndParseInput(eingabe_t, 'Geometrie --> t');
 
     // Array für die Kennlinien-Punkte.
     const federkennlinieData = [];
@@ -379,10 +385,10 @@ berechneButton.addEventListener("click", function() {
     if (radio12.checked) { 
                       
         // Prüfung 2: sind alle Eingaben Zahlen?                                  
-        if (!isNaN(da) && !isNaN(di) && !isNaN(t12) && !isNaN(l0)) {
+        if (!isNaN(da) && !isNaN(di) && !isNaN(t) && !isNaN(l0)) {
             
             // Berechnen der konstanten Gleichungen der Kennlinienberechnung.
-            h0 = calculate_h0(l0, t12);
+            h0 = calculate_h0(l0, t);
             delta = calculate_delta(da, di);
             K1 = calculate_K1(delta);
 
@@ -395,81 +401,85 @@ berechneButton.addEventListener("click", function() {
                 for (let x = 0; x <= h0; x += 0.01) {
                     
                     // Wertepaare berechnen und dem Array übergeben.
-                    let y = calculate_F12(E, mu, t12, K1, da, h0, x);
+                    let y = calculate_F12(E, mu, t, K1, da, h0, x);
                     federkennlinieData.push({ x: x, y: y }); 
                 }
 
                 // Sicherstellen, dass der letzte Punkt exakt bei h0 liegt.
                 if (federkennlinieData[federkennlinieData.length - 1].x < h0) {
-                    let y = calculate_F12(E, mu, t12, K1, da, h0, h0);
+                    let y = calculate_F12(E, mu, t, K1, da, h0, h0);
                     federkennlinieData.push({ x: h0, y: y });
                 }
 
                 // Werte bei 75 % Einfederung bestimmen.
                 stapel_s_075 = 0.75 * h0;
-                stapel_F_075 = calculate_F12(E, mu, t12, K1, da, h0, stapel_s_075);
+                stapel_F_075 = calculate_F12(E, mu, t, K1, da, h0, stapel_s_075);
                 // Dicke-Wert der Berechnung für später speichern.
-                stapel_t = t12;
+                stapel_t = t;
             }
         }
     }
     // Für Gruppe 3:
     else if (radio3.checked) { 
         
-        // Abrufen und Prüfen von t3 (=t').
-        let t3 = validateAndParseInput(eingabe_t3, "Geometrie --> t'");
+        // Abrufen und Prüfen von t_strich (=t').
+        let t_strich = validateAndParseInput(eingabe_t_strich, "Geometrie --> t'");
 
         // Prüfung 2: sind alle Eingaben Zahlen?                
-        if (!isNaN(da) && !isNaN(di) && !isNaN(t12) && !isNaN(t3) && !isNaN(l0)) {
+        if (!isNaN(da) && !isNaN(di) && !isNaN(t) && !isNaN(t_strich) && !isNaN(l0)) {
 
             // Berechnen der konstanten Gleichungen der Kennlinienberechnung.
-            h0 = calculate_h0(l0, t3); // entspricht h0' weil t3 = t' übergeben wird
+            h0 = calculate_h0(l0, t);
+            h0_strich = calculate_h0(l0, t_strich);
             delta = calculate_delta(da, di);
-            c1 = calculate_c1(t3, t12, l0);
-            c2 = calculate_c2(c1, t3, t12, l0);
+            c1 = calculate_c1(t_strich, t, l0);
+            c2 = calculate_c2(c1, t_strich, t, l0);
             K1 = calculate_K1(delta);
 
             // Bestimmung von K4 je nachdem ob t=t'.
-            if (t12 !== t3) {
+            if (t !== t_strich) {
                 
                 K4 = calculate_K4(c1, c2);
+
             } else {
 
                 // Wenn die beiden Werte gleich sind, dann wird K4 aus der Eingabe bestimmt.
                 let K4_parameter = validateAndParseInput(eingabe_K4, "Geometrie --> Kennlinienparameter");
-                K4 = K4_parameter / (h0 / t3);
+                K4 = K4_parameter / (h0_strich / t_strich);
             }
 
             // Prüfung 3: konnten alle Werte berechnet werden?
-            if (!isNaN(h0) && !isNaN(delta) && !isNaN(c1) && !isNaN(c2) && !isNaN(K1) && !isNaN(K4)) {
+            if (!isNaN(h0) && !isNaN(h0_strich) && !isNaN(delta) && !isNaN(c1) && !isNaN(c2) && !isNaN(K1) && !isNaN(K4)) {
 
                 kennlinie_isValid = true; // Prüfvariable setzen.
 
-                // Kennlinienberechnung von s = 0 bis s = h0 (hier h0').
+                // Kennlinienberechnung von s = 0 bis s = h0.
                 for (let x = 0; x <= h0; x += 0.01) {
 
                     // Wertepaare berechnen und dem Array übergeben.
-                    let y = calculate_F3(E, mu, t3, K1, da, K4, h0, x);
+                    let y = calculate_F3(E, mu, t_strich, K1, da, K4, h0_strich, x);
                     federkennlinieData.push({ x: x, y: y }); 
                 }
 
                 // Sicherstellen, dass der letzte Punkt exakt bei h0 liegt.
                 if (federkennlinieData[federkennlinieData.length - 1].x < h0) {
-                    let y = calculate_F3(E, mu, t3, K1, da, K4, h0, h0);
+                    let y = calculate_F3(E, mu, t_strich, K1, da, K4, h0_strich, h0);
                     federkennlinieData.push({ x: h0, y: y });
                 }
 
                 // Werte bei 75 % Einfederung bestimmen.
                 stapel_s_075 = 0.75 * h0;
-                stapel_F_075 = calculate_F3(E, mu, t3, K1, da, K4, h0, stapel_s_075);
+                stapel_F_075 = calculate_F3(E, mu, t_strich, K1, da, K4, h0_strich, stapel_s_075);
                 // Dicke-Wert der Berechnung für später speichern.
-                stapel_t = t3;
+                stapel_t = t_strich;
             }
         }
     }
 
-    // Stapeldaten einbinden:
-    //
+    //=======================//
+    // Stapeldaten einbinden //
+    //=======================//
+
     // Eingaben holen:
     let stapel_n_temp = validateAndParseInputOptional(eingabe_stapel_n, 'Stapeldaten - n');
     let stapel_i_temp = validateAndParseInputOptional(eingabe_stapel_i, 'Stapeldaten - i')
@@ -522,7 +532,7 @@ berechneButton.addEventListener("click", function() {
     stapel_s_075 *= stapel_i;
     stapel_F_075 *= stapel_n;
     stapel_L0 = stapel_i * (l0 + (stapel_n - 1) * stapel_t);
-    stapel_h0 = stapel_i * h0;
+    stapel_h0 = stapel_i * h0; // h0 ist in beiden Fällen der maximale Federweg!
     
     // Falls bis hierhin etwas nicht geklappt hat ist Ende.
     if (kennlinie_isValid === false) {
@@ -530,9 +540,10 @@ berechneButton.addEventListener("click", function() {
     }
 
 
-
-    // Arbeitspunkt:
-    //
+    //==============//
+    // Arbeitspunkt //
+    //==============//
+    
     // Eingabe-Werte holen und validieren.
     let AP = validateAndParseInputOptional(eingabe_AP, "Arbeitspunkt --> AP");
     let AP_Abweichung_1 = validateAndParseInputOptional(eingabe_AP_Abweichung_1, "Arbeitspunkt --> Punkt 1");
@@ -556,13 +567,13 @@ berechneButton.addEventListener("click", function() {
 
         if (einheit_AP_Abweichung_1.value === "percent") {
 
-            // Wenn die Abweichung in Prozent angegeben ist:
+            // Wenn die Abweichung in Prozent angegeben ist
             AP_Punkt_1 = AP + ((AP_Abweichung_1 / 100) * AP);
             AP_Array_input.push(AP_Punkt_1);
 
         } else {
 
-            // Wenn die Abweichung absolut angegeben ist:
+            // Wenn die Abweichung absolut angegeben ist
             AP_Punkt_1 = AP + AP_Abweichung_1;
             AP_Array_input.push(AP_Punkt_1);
             
@@ -573,13 +584,13 @@ berechneButton.addEventListener("click", function() {
 
         if (einheit_AP_Abweichung_2.value === "percent") {
 
-            // Wenn die Abweichung in Prozent angegeben ist:
+            // Wenn die Abweichung in Prozent angegeben ist
             AP_Punkt_2 = AP + ((AP_Abweichung_2 / 100) * AP);
             AP_Array_input.push(AP_Punkt_2);
 
         } else {
 
-            // Wenn die Abweichung absolut angegeben ist:
+            // Wenn die Abweichung absolut angegeben ist
             AP_Punkt_2 = AP + AP_Abweichung_2;
             AP_Array_input.push(AP_Punkt_2);
 
@@ -597,6 +608,7 @@ berechneButton.addEventListener("click", function() {
             for (let i = 0; i < AP_Array_input.length; i++) {
                 
                 if (AP_Array_input[i] >= 0 && AP_Array_input[i] <= stapel_h0) {
+
                     // Federweg direkt aus Eingabe.
                     let s_i = AP_Array_input[i];
                     // Einfederung bezogen auf die Stapelhöhe.
@@ -614,7 +626,7 @@ berechneButton.addEventListener("click", function() {
                     } else if (radio3.checked) {
 
                         let s_einzelfeder = s_i / stapel_i; // stapel_i ist die globale Variable!
-                        F_i = stapel_n * calculate_F3(E, mu, stapel_t, K1, da, K4, h0, s_einzelfeder);
+                        F_i = stapel_n * calculate_F3(E, mu, stapel_t, K1, da, K4, h0_strich, s_einzelfeder);
 
                     }
 
@@ -681,8 +693,10 @@ berechneButton.addEventListener("click", function() {
     }
 
 
-    // Ausgabe:
-    //
+    //=========//
+    // Ausgabe //
+    //=========//
+
     // Test
     ausgabe_K4.textContent = K4.toFixed(5);
 
@@ -692,8 +706,8 @@ berechneButton.addEventListener("click", function() {
     ausgabe_stapel_F_075.textContent = stapel_F_075.toFixed(0);
     ausgabe_stapel_s_075.textContent = stapel_s_075.toFixed(2);
 
-    // Arbeitspunkte.
-    // Zuerst alle AP-Container ausblenden, um einen sauberen Zustand zu schaffen.
+    // Arbeitspunkte:
+    // Standard: Sichtbarkeit für alle aus.
     ausgabeContainer_AP.style.display = 'none';
     ausgabeContainer_AP_Punkt1.style.display = 'none';
     ausgabeContainer_AP_Punkt2.style.display = 'none';
@@ -739,9 +753,10 @@ berechneButton.addEventListener("click", function() {
     }
 
 
+    //=========//
+    // Plotten //
+    //=========//
 
-    // Plotten
-    //
     // Holt das canvas-Element und gibt ihm eine 2D-Logik.
     const ctx = plotCanvasElement.getContext('2d');
 
@@ -750,7 +765,7 @@ berechneButton.addEventListener("click", function() {
         myChart.destroy();
     }
 
-    // --- VORBEREITUNG DER DATENSÄTZE FÜR DAS DIAGRAMM ---
+    // Datensätze für das Diagramm:
 
     // 1. Beginne mit dem Datensatz für die Kennlinie
     let chartDatasets = [{
@@ -837,7 +852,7 @@ berechneButton.addEventListener("click", function() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Button "Zurück zur Eingabe":
+// Button "Zurück zur Eingabe"
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 zurückButton.addEventListener("click", function() {
 
@@ -853,7 +868,7 @@ zurückButton.addEventListener("click", function() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Button "Neue Berechnung":
+// Button "Neue Berechnung"
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 neueBerechnungButton.addEventListener("click", function() {
 
@@ -866,8 +881,8 @@ neueBerechnungButton.addEventListener("click", function() {
         eingabe_Titel,
         eingabe_Da,
         eingabe_Di,
-        eingabe_t12,
-        eingabe_t3,
+        eingabe_t,
+        eingabe_t_strich,
         eingabe_K4,
         eingabe_L0,
         eingabe_stapel_n,
