@@ -771,41 +771,43 @@ berechneButton.addEventListener("click", function() {
     let chartDatasets = [{
         label: `Federkennlinie`,
         data: federkennlinieData,
-        type: 'line', // explizit als Linie definieren
+        type: 'line',
         borderColor: 'rgb(153, 15, 15)',
         tension: 0.1,
         fill: false,
-        pointRadius: 0,
-        hitRadius: 5,
-        hoverRadius: 5
+        pointRadius: 0, // Es werden keine einzelnen Punkt angezeigt.
+        pointHitRadius: 5, // Radius in dem ein Punkt auf die Maus reagiert.
+        pointHoverRadius: 0,
     }];
 
-    // 2. Füge den 75%-Punkt hinzu (optional, kannst du auch auskommentieren)
+    // 2. Füge den 75%-Punkt hinzu.
     chartDatasets.push({
-        label: '75% Federweg',
+        label: 'Prüfpunkt',
         data: [{ x: stapel_s_075, y: stapel_F_075 }],
         type: 'scatter',
         backgroundColor: 'rgb(0, 100, 255)',
-        pointRadius: 6,
-        pointHoverRadius: 8
+        pointRadius: 5,
+        pointHitRadius: 10,
     });
 
     // 3. Füge dynamisch für jeden Arbeitspunkt einen Datensatz hinzu
+    // Stile für die drei Punkte
     const apPunktStyles = [
         { label: 'Arbeitspunkt', color: 'rgb(255, 99, 132)' },   // Rot
         { label: 'AP Abweichung 1', color: 'rgb(54, 162, 235)' }, // Blau
         { label: 'AP Abweichung 2', color: 'rgb(75, 192, 192)' }  // Grün
     ];
 
+    // Falls ein Punkt im output Array ist, wird er hinzugefügt.
     AP_Array_output.forEach((apPunkt, index) => {
-        if (apPunkt) { // Stelle sicher, dass der Punkt existiert
+        if (apPunkt) {
             chartDatasets.push({
                 label: apPunktStyles[index] ? apPunktStyles[index].label : `Punkt ${index + 1}`,
                 data: [{ x: apPunkt.s, y: apPunkt.F }],
                 type: 'scatter',
                 backgroundColor: apPunktStyles[index] ? apPunktStyles[index].color : 'rgb(0,0,0)',
-                pointRadius: 7,       // Etwas größer, um sie hervorzuheben
-                pointHoverRadius: 9
+                pointRadius: 5,      
+                pointHitRadius: 10,
             });
         }
     });
@@ -813,28 +815,115 @@ berechneButton.addEventListener("click", function() {
 
     // --- ERSTELLEN DES DIAGRAMMS MIT ALLEN VORBEREITETEN DATENSÄTZEN ---
 
+    // Globale Schriftart für den gesamten Chart festlegen
+    Chart.defaults.font.family = "'Noto Sans', sans-serif";
+    Chart.defaults.font.size = 12;
+    Chart.defaults.color = '#333';
+
     myChart = new Chart(ctx, {
-        type: 'line', // Der Standard-Typ, falls nicht im Datensatz anders definiert
+        type: 'line',
         data: {
-            datasets: chartDatasets // Hier das vollständige Array übergeben
+            datasets: chartDatasets
         },
+
         options: {
-            // Mix-Type-Charts benötigen diese Option nicht zwingend, aber es schadet nicht
-            // type: 'line',
+            // responsive: true sorgt dafür, dass sich der Chart an die Containergröße anpasst.
+            // maintainAspectRatio: false erlaubt dem Chart, das Seitenverhältnis zu ändern, um den Container auszufüllen.
+            responsive: true,
+            maintainAspectRatio: false,
+
             scales: {
                 x: {
                     type: 'linear',
-                    title: { display: true, text: 'Federweg s / mm' },
-                    grid: { display: true, drawOnChartArea: true, drawTicks: true },
-                    border: { dash: [5, 5], color: 'rgb(153, 15, 15)' },
+                    title: {
+                        display: true,
+                        text: 'Federweg s / mm',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    grid: {
+                        color: '#e0e0e0',
+                    },
+                    border: {
+                        color: '#333',
+                        dash: [5, 5]
+                    },
                 },
                 y: {
                     type: 'linear',
-                    title: { display: true, text: 'Federkraft F / N' },
-                    grid: { display: true, drawOnChartArea: true, drawTicks: true },
-                    border: { dash: [5, 5], color: 'rgb(153, 15, 15)' },
+                    title: {
+                        display: true,
+                        text: 'Federkraft F / N',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    grid: {
+                        color: '#e0e0e0',
+                    },
+                    border: {
+                        color: '#333',
+                        dash: [5, 5]
+                    },
                 },
             },
+            
+            // Konfiguration der Plugins (Legende, Tooltip, etc.)
+            plugins: {
+                // Legenden-Einstellungen
+                legend: {
+                    position: 'bottom', // Positioniert die Legende unter dem Chart
+                    labels: {
+                        usePointStyle: true, // Verwendet den Punkt-Stil (z.B. Kreis) anstelle eines Rechtecks
+                        padding: 20, // Mehr Abstand
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                // Tooltip-Einstellungen (was beim Hovern über einem Punkt angezeigt wird)
+                tooltip: {
+                    enabled: true,
+                    mode: 'nearest',
+                    intersect: true,
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleAlign: 'right', 
+                    titleFont: {
+                        size: 14,
+                        weight: 'regular',
+                    },
+                    bodyFont: {
+                        size: 14,
+                        weight: 'regular',
+                    },
+                    padding: 10,
+                    cornerRadius: 4,
+                    displayColors: false,
+                    
+                    // Callback, um den Tooltip-Text anzupassen
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                // Fügt Einheiten hinzu und formatiert die Zahlen
+                                label += `${context.parsed.y.toFixed(0)} N`;
+                            }
+                            return label;
+                        },
+                        title: function(context) {
+                            // Fügt die Einheit "mm" zum Titel (X-Achsenwert) hinzu
+                            return `Federweg: ${context[0].parsed.x.toFixed(2)} mm`;
+                        }
+                    }
+                }
+            },
+            
             // Sorgt für eine saubere Darstellung der Tooltips bei gemischten Diagrammtypen
             interaction: {
                 mode: 'index',
