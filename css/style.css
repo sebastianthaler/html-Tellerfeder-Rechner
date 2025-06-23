@@ -3,14 +3,28 @@
 html{
     font-size: 16px; /* Bezugsgröße: Aufrufbar als 1rem, bzw so skalierbar. */
     font-family: 'Noto Sans', sans-serif; /* Sans-serif ist Arial, andere Optionen Helvetica, Fira Sans, Noto Sans, etc. */
-}
+    box-sizing: border-box;
+    }
+
+    *, *::before, *::after {
+    box-sizing: inherit;
+    }
+
+/* box-sizing gilt damit für alle Elemente die nicht explizit anders definiert werden:
+   Eine Box besteht aus
+        - Inhalt
+        - Padding (der Abstand vom Inhalt zum Rand)
+        - Border (Randlinie)
+   Bei box-sizing gelten width & height für die gesamte Box bis ans Ende der Randlinie. */
+
 
 /* Größeneinheiten:
-    - Pixel (px) ist ein absolutes Maß. Je nach Auflösung des Bildschirms entspricht 1 px unterschiedlich vielen physischen Pixeln.
-    - Prozent (%) bezieht sich auf die Größe des direkten Elternelements im HTML-Code.
-    - Viewport width (vw) bezieht sich auf den sichtbare Breite des Browsers. 1vm ist 1% dieses Bereichs.
-    - Viewport height (vh) ist dasselbe für die sichtbare Höhe.
-*/
+        - Pixel (px) ist ein absolutes Maß. Je nach Auflösung des Bildschirms entspricht 1 px unterschiedlich vielen physischen Pixeln.
+        - Prozent (%) bezieht sich auf die Größe des direkten Elternelements im HTML-Code.
+        - Viewport width (vw) bezieht sich auf den sichtbare Breite des Browsers. 1vm ist 1% dieses Bereichs.
+        - Viewport height (vh) ist dasselbe für die sichtbare Höhe. */
+
+
 
 /* Stil für die gesamte Seite. Steuert auch wie der Standard-Container auf der Seite angeordnet wird. */ 
 body {
@@ -85,47 +99,60 @@ button:hover {
     margin-bottom: 20px;
 }
 
-/* Stil für die Eigabegruppe, in der Label, Eingabefeld und Dropdownmenü einzeilig angeordnet werden können. Es folgen die Klassen mit den Stilen für die einzelnen Elemente. */
+/*===============================================================================================*/
+/* Eingabegruppe */
+/*===============================================================================================*/
+
 .input-group {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+
+    margin-bottom: 10px;
 }
 .input-description {
     height: 35px;
-    display: flex;
-    align-items: center;
     width: 250px;
+
+    display: flex; /* Standardmäßig in einer Reihe = Hauptachse. */
+    align-items: center; /* Ausrichtung quer zu Hauptachse. */
+
     font-size: 1.0rem;
     font-weight: bold;
 }
 .input-label {
     height: 35px;
+    width: 150px;
+
     display: flex;
     align-items: center;
-    width: 150px;
+    
     font-size: 1.0rem;
 }
 .input-field {
     height: 35px;
-    box-sizing: border-box;
+    width: 150px;
+
     padding: 10px;
     flex-grow: 0;
-    width: 150px;
-    font-size: 1rem;
     margin-left: auto;
+    
+    font-size: 1rem;
 }
 .input-dropdown {
     height: 35px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
+    width: auto;
+
     flex-grow: 0;
     flex-shrink: 0;
-    width: auto;
-    font-size: 0.9em;
+
+    padding: 10px;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
     margin-left: auto;
+    
+    font-size: 0.9em;
 }
 
 /* Stile für die Ausgabe. */
@@ -154,7 +181,6 @@ button:hover {
 }
 .output-field {
     height: 35px;
-    box-sizing: border-box;
     padding: 10px;
     flex-grow: 0;
     width: 150px; /* Gleiche Breite wie input-field für Ausrichtung */
@@ -186,6 +212,5 @@ button:hover {
 .radio-group-container label {
     font-weight: normal;
     font-size: 0.95rem;
-    margin-left: 5px;
-    margin-right: 15px;
+    margin-left: auto;
 }
