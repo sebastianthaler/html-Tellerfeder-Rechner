@@ -161,10 +161,12 @@ function updateArbeitspunktEinheiten() {
         // Bei Federweg-Definition: mm verwenden
         einheit_AP_Abweichung_1.innerHTML = '<option value="mm">mm</option><option value="percent">%</option>';
         einheit_AP_Abweichung_2.innerHTML = '<option value="mm">mm</option><option value="percent">%</option>';
+        einheit_label_AP.textContent = "s / mm";
     } else if (radioAuswahlFederkraft.checked) {
         // Bei Federkraft-Definition: N verwenden
         einheit_AP_Abweichung_1.innerHTML = '<option value="N">N</option><option value="percent">%</option>';
         einheit_AP_Abweichung_2.innerHTML = '<option value="N">N</option><option value="percent">%</option>';
+        einheit_label_AP.textContent = "F / N";
     }
 }
 

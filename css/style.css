@@ -10,7 +10,7 @@ html{
     box-sizing: inherit;
     }
 
-/* box-sizing gilt damit für alle Elemente die nicht explizit anders definiert werden:
+/* Größendefinition: box-sizing gilt damit für alle Elemente die nicht explizit anders definiert werden:
    Eine Box besteht aus
         - Inhalt
         - Padding (der Abstand vom Inhalt zum Rand)
@@ -23,6 +23,17 @@ html{
         - Prozent (%) bezieht sich auf die Größe des direkten Elternelements im HTML-Code.
         - Viewport width (vw) bezieht sich auf den sichtbare Breite des Browsers. 1vm ist 1% dieses Bereichs.
         - Viewport height (vh) ist dasselbe für die sichtbare Höhe. */
+
+/* Darstellung eines Elements: display-Eintrag
+        - block:        Element nimmt die gesamte, vefügbare Breite ein mit Zeilenumbruch davor und danach.
+        - inline:       Element ist nur so groß wie sein Inhalt.
+        - inline-block: block-Element ABER ohne Zeilenumbruch.
+        - flex:         block-Element ABER kann seinen Inhalt flexibel anordnen!             
+            - flex-direction: row (Standard) / column --- Bestimmt die Hauptachse und damit die Ausrichtung des Inhalts.
+            - justify-content: center / ... --- Bestimmt die Paltzierung des Inhalts für die Hauptachse.
+            - align-items: center / ... --- Bestimmt die Platzierung des Inhalts quer zur Hauptachse.
+            - ...
+        - inline-flex:  inline-Element ABER kann seinen Inhalt flexibel anordnen!
 
 
 
@@ -53,7 +64,7 @@ h2 {
 /* Allgemeiner Stil für Button Definition des Hover-Effekts. */
 button {
     cursor: pointer;
-    display: block; /* Normalerweise verhält sich ein button wie ein inline-block Element. Diese werden in einer Zeile nebeneinander angeordnet. Ein block Element erzwingt vorher und nacher einen Umbruch.*/
+    display: block;
     width: 100%;
     padding: 10px;
     border: none;
@@ -99,64 +110,95 @@ button:hover {
     margin-bottom: 20px;
 }
 
+.vertical-separator {
+    width: 2px; /* Die Breite der Linie */
+    background-color: #ccc; /* Die Farbe der Linie */
+}
+
+/*===============================================================================================*/
+/* Einzeiliger Container */
+/*===============================================================================================*/
+
+.line-container {
+
+    /* Größe */
+    margin-bottom: 10px;
+
+    /* Inhaltsdarstellung */
+    display: flex;
+    gap: 10px;
+}
+
+.line-description {
+
+    /* Größe */
+    height: 35px;
+    max-width: 50%;
+    margin-right: auto;
+
+    /* Inhaltsdarstellung */
+    display: flex;
+    align-items: center;
+    font-size: 1.0rem;
+}
+
 /*===============================================================================================*/
 /* Eingabegruppe */
 /*===============================================================================================*/
 
 .input-group {
-    display: flex;
-    gap: 10px;
 
-    margin-bottom: 10px;
-}
-.input-description {
-    height: 35px;
-    width: 250px;
-
-    display: flex; /* Standardmäßig in einer Reihe = Hauptachse. */
-    align-items: center; /* Ausrichtung quer zu Hauptachse. */
-
-    font-size: 1.0rem;
-    font-weight: bold;
-}
-.input-label {
-    height: 35px;
-    width: 150px;
-
-    display: flex;
-    align-items: center;
-    
-    font-size: 1.0rem;
-}
-.input-field {
-    height: 35px;
-    width: 150px;
-
-    padding: 10px;
-    flex-grow: 0;
-    margin-left: auto;
-    
-    font-size: 1rem;
-}
-.input-dropdown {
+    /* Größe */
     height: 35px;
     width: auto;
 
-    flex-grow: 0;
-    flex-shrink: 0;
+    /* Inhaltsdarstellung */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
+.input-label {
+
+    /* Größe */
+    height: 35px;
+    margin-right: 5px;
+
+    /* Inhaltsdarstellung */
+    display: flex;
+    align-items: center;
+    font-size: 1.0rem;
+}
+.input-field {
+
+    /* Größe */
+    height: 35px;
+    width: 100px;
+    flex-grow: 0;
     padding: 10px;
 
+    /* Inhaltsdarstellung */
+    font-size: 1rem;
+}
+.input-dropdown {
+
+    /* Größe */
+    height: 35px;
+    width: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
 
-    margin-left: auto;
-    
-    font-size: 0.9em;
+    /* Inhaltsdarstellung */
+    font-size: 0.9rem;
 }
 
-/* Stile für die Ausgabe. */
-/* Container für die gesamte Ausgabegruppe */
+
+/*===============================================================================================*/
+/* Ausgabe-Gruppe */
+/*===============================================================================================*/
 .output-group-container {
     margin-top: 20px; /* Abstand nach oben */
     margin-bottom: 20px; /* Abstand nach unten */
@@ -192,7 +234,9 @@ button:hover {
     align-items: center; /* Vertikale Zentrierung des Textes */
 }
 
-/* Stil für den Plot. Im Gegensatz zum . der den Stil allen Elemente mit der jeweiligen Klasse zuordnet. Ordnet # den Stil den Elementen mit der ID zu.*/
+/*===============================================================================================*/
+/* Plot */
+/*===============================================================================================*/
 #plotCanvas {
     max-width: 100%;
     max-height: 500px;
@@ -202,15 +246,17 @@ button:hover {
     margin-bottom: 20px;
 }
 
-/* Stil für die Gruppe mit horizontal angeordeten radio-Elementen mit Label. Bei radio-Elementen kann immer nur eine Auswahlmöglichkeit einer Gruppe (definiert durch name = x im HTML-Teil) aktiviert werden. */
+/*===============================================================================================*/
+/* Radio-Elemente */
+/*===============================================================================================*/
 .radio-group-container {
     display: flex;
     align-items: center;
     gap: 10px;
 }
-/* Stil für das Label eines radio-buttons. Das Label wird im HTML-Teil durch for = id dem jeweiligen Element zugeordnet. */ 
+
 .radio-group-container label {
     font-weight: normal;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     margin-left: auto;
 }

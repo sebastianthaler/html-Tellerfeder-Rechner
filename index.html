@@ -26,89 +26,148 @@
     
     <!-- Tatsächliche Seitenelemente -->
 
+    <!-- =========================================================================================== -->
+    <!-- Eingabe-Container -->
+    <!-- =========================================================================================== -->
+
     <div id="eingabeContainer" class="container-standard">
+
         <h1>Eingaben</h1>
-        <div class="description">
-            Test für Git.
+
+        <!-- ------------------------------------------------------------------------------------------- -->
+        <!-- TITTEL-EINGABE -->
+        <!-- ------------------------------------------------------------------------------------------- -->
+
+        <div class="line-container">
+
+            <div class="line-description">Titel der Berechnung:</div>
+
+            <input type="text" id="eingabe_Titel" class="input-field" style="width:300px;">
         </div>
 
-        <div class="input-group">
-            <div class="input-description">Titel der Berechnung:</div>
-            <input type="text" id="eingabe_Titel" class="input-field" placeholder="Optional" style="width:400px;">
-        </div>
+        <!-- ------------------------------------------------------------------------------------------- -->
+        <!-- GEOMETRIE -->
+        <!-- ------------------------------------------------------------------------------------------- -->
 
         <div class="line-with-text-left"><h2>Geometrie</h2></div>
 
-        <div class="description">
-            Testeingaben für Gruppe 1 & 2:
-                <ul>
-                    <li>Außendurchmesser = 56</li>
-                    <li>Innendurchmesser = 28,5</li>
-                    <li>Dicke = 1,5</li>
-                    <li>Höhe = 3,45</li>
-                </ul>
-        </div>
+        <div class="line-container">
 
-        <div class="input-group">
-            <div class="input-description">Tellefedergruppe</div>
-            <div class="radio-group-container">
+            <div class="line-description">Tellefedergruppe</div>
 
-                <input type="radio" id="radio12" name="gruppenwahl" checked>
-                <label for="radio12">Gruppe 1&2</label>
+            <div class="input-group">
+                
+                <div class="radio-group-container">
 
-                <input type="radio" id="radio3" name="gruppenwahl">
-                <label for="radio3">Gruppe 3</label>
+                    <input type="radio" id="radio12" name="gruppenwahl" checked>
+                    <label for="radio12">Gruppe 1&2</label>
+
+                    <input type="radio" id="radio3" name="gruppenwahl">
+                    <label for="radio3">Gruppe 3</label>
+                </div>
             </div>
         </div>
 
-        <div class="input-group">
-            <div class="input-description">Außendurchmesser:</div>
-            <div class="input-label">De / mm =</div>
-            <input type="text" id="eingabe_Da" class="input-field" placeholder="Pflichtfeld">
+        <div class="line-container">
+
+            <div class="line-description">Außendurchmesser</div>
+
+            <div class="input-group">
+
+                <div class="input-label">De / mm</div>
+
+                <input type="text" id="eingabe_Da" class="input-field" placeholder="Pflichtfeld">
+            </div>
         </div>
 
-        <div class="input-group">
-            <div class="input-description">Innendurchmesser:</div>
-            <div class="input-label">Di / mm =</div>
-            <input type="text" id="eingabe_Di" class="input-field" placeholder="Pflichtfeld">
+        <div class="line-container">
+
+            <div class="line-description">Innendurchmesser</div>
+
+            <div class="input-group">
+
+                <div class="input-label">Di / mm</div>
+
+                <input type="text" id="eingabe_Di" class="input-field" placeholder="Pflichtfeld">
+            </div>
         </div>
 
-        <div class="input-group" id="inputGroup_t12">
-            <div class="input-description">Dicke:</div>
-            <div class="input-label">t / mm =</div>
-            <input type="text" id="eingabe_t" class="input-field" placeholder="Pflichtfeld">
+        <div class="line-container" id="inputGroup_t12">
+
+            <div class="line-description">Dicke</div>
+
+            <div class="input-group">
+
+                <div class="input-label">t / mm</div>
+
+                <input type="text" id="eingabe_t" class="input-field" placeholder="Pflichtfeld">
+            </div>
         </div>
 
-        <div class="input-group" id="inputGroup_t3">
-            <div class="input-description">Reduzierte Dicke:</div>
-            <div class="input-label">t' / mm =</div>
-            <input type="text" id="eingabe_t_strich" class="input-field" placeholder="Pflichtfeld">
+        <div class="line-container" id="inputGroup_t3">
+
+            <div class="line-description">Reduzierte Dicke</div>
+
+            <div class="input-group">
+
+                <div class="input-label">t' / mm</div>
+
+                <input type="text" id="eingabe_t_strich" class="input-field" placeholder="Pflichtfeld">
+            </div>
         </div>
 
-        <div class="input-group" id="inputGroup_K4">
-            <div class="input-description">Kennlinienparameter:</div>
-            <div class="input-label">K4 * (h0'/t') =</div>
-            <input type="text" id="eingabe_K4" class="input-field" placeholder="wenn t=t'">
+        <div class="line-container" id="inputGroup_K4">
+
+            <div class="line-description">Kennlinienparameter</div>
+
+            <div class="input-group">
+
+                <div class="input-label">K4 * (h0'/t') / -</div>
+
+                <input type="text" id="eingabe_K4" class="input-field" placeholder="wenn t=t'">
+            </div>
         </div>
 
-        <div class="input-group">
-            <div class="input-description">Höhe (im unbelasteten Zustand):</div>
-            <div class="input-label">L0 / mm =</div>
-            <input type="text" id="eingabe_L0" class="input-field" placeholder="Pflichtfeld">
+        <div class="line-container">
+
+            <div class="line-description">Unbelastete Bauhöhe</div>
+
+            <div class="input-group">
+
+                <div class="input-label">L0 / mm</div>
+
+                <input type="text" id="eingabe_L0" class="input-field" placeholder="Pflichtfeld">
+            </div>
         </div>
+
+        <!-- ------------------------------------------------------------------------------------------- -->
+        <!-- STAPELDATEN -->
+        <!-- ------------------------------------------------------------------------------------------- -->
 
         <div class="line-with-text-left"><h2>Stapeldaten</h2></div>
 
-        <div class="input-group">
-            <div class="input-description">Gleichsinnig geschichtete Federn (Parallelschaltung):</div>
-            <div class="input-label">n =</div>
-            <input type="text" id="eingabe_stapel_n" class="input-field" placeholder="Optional">
+        <div class="line-container">
+
+            <div class="line-description">Gleichsinnig geschichtete Federn</div>
+
+            <div class="input-group">
+
+                <div class="input-label">n / -</div>
+
+                <input type="text" id="eingabe_stapel_n" class="input-field">
+            </div>
         </div>
 
-        <div class="input-group">
-            <div class="input-description">Wechselsinnig geschichtete Federn (Reihenschaltung):</div>
-            <div class="input-label">i =</div>
-            <input type="text" id="eingabe_stapel_i" class="input-field" placeholder="Optional">
+        <div class="line-container">
+
+            <div class="line-description">Wechselsinnig geschichtete Federn</div>
+
+            <div class="input-group">
+
+                <div class="input-label">i / -</div>
+
+                <input type="text" id="eingabe_stapel_i" class="input-field">
+            </div>
         </div>
 
         <!-- ------------------------------------------------------------------------------------------- -->
@@ -117,55 +176,62 @@
 
         <div class="line-with-text-left"><h2>Arbeitspunkt</h2></div>
 
-        <div class="input-group">
+        <div class="line-container">
 
-            <div class="input-description">Definition</div>
+            <div class="line-description">Definition</div>
 
-            <div class="radio-group-container">
+            <div class="input-group">
 
-                <input type="radio" id="radioAuswahlFederweg" name="arbeitspunktdefinition" checked>
-                <label for="radioAuswahlFederweg">über Federweg</label>
+                <div class="radio-group-container">
 
-                <input type="radio" id="radioAuswahlFederkraft" name="arbeitspunktdefinition">
-                <label for="radioAuswahlFederkraft">über Federkraft</label>
-
+                    <input type="radio" id="radioAuswahlFederweg" name="arbeitspunktdefinition" checked>
+                    <label for="radioAuswahlFederweg">über Federweg</label>
+                    <input type="radio" id="radioAuswahlFederkraft" name="arbeitspunktdefinition">
+                    <label for="radioAuswahlFederkraft">über Federkraft</label>
+                </div>
             </div>
         </div>
 
-        <div class="input-group">
+        <div class="line-container">
 
-            <div class="input-description">Arbeitspunkt:</div>
+            <div class="line-description">Arbeitspunkt</div>
 
-            <div class="input-label">AP =</div>
+            <div class="input-group">
 
-            <input type="text" id="eingabe_AP" class="input-field" placeholder="Optional">
+                <div class="input-label" id="einheit_label_AP">s / mm</div>
 
+                <input type="text" id="eingabe_AP" class="input-field">
+            </div>
         </div>
 
-        <div class="input-group">
+        <div class="line-container">
 
-            <div class="input-description">lol</div>
-
-            <select id="einheit_AP_Abweichung_1" class="input-dropdown">
-                <option value="mm">mm</option>
-                <option value="percent">%</option>
-            </select>
-
-            <input type="text" id="eingabe_AP_Abweichung_1" class="input-field" placeholder="Optional">
-
+            <div class="line-description" style="max-width: 100%;" >Optional: Weitere Punkte definiert als Abweichung vom Arbeitspunkt</div>
         </div>
 
-        <div class="input-group">
+        <div class="line-container">
 
-            <div class="input-description">lol</div>
+            <div class="input-group" style="margin-left: auto;">
 
-            <select id="einheit_AP_Abweichung_2" class="input-dropdown">
-                <option value="mm">mm</option>
-                <option value="percent">%</option>
-            </select>
+                <input type="text" id="eingabe_AP_Abweichung_1" class="input-field" placeholder="Punkt 1">
 
-            <input type="text" id="eingabe_AP_Abweichung_2" class="input-field" placeholder="Optional">
+                <select id="einheit_AP_Abweichung_1" class="input-dropdown">
+                    <option value="mm">mm</option>
+                    <option value="percent">%</option>
+                </select>
+            </div>
 
+            <div class="vertical-separator"></div>
+
+            <div class="input-group">
+
+                <input type="text" id="eingabe_AP_Abweichung_2" class="input-field" placeholder="Punkt 2">
+
+                <select id="einheit_AP_Abweichung_2" class="input-dropdown">
+                    <option value="mm">mm</option>
+                    <option value="percent">%</option>
+                </select>
+            </div>
         </div>
 
         <!-- ------------------------------------------------------------------------------------------- -->
@@ -174,16 +240,27 @@
 
         <div class="line-with-text-left"><h2>Benutzerdefinierte Werkstoffdaten</h2></div>
 
-        <div class="input-group">
-            <div class="input-description">E-Modul des Werkstoffs:</div>
-            <div class="input-label">E / Nmm-2 =</div>
-            <input type="text" id="eingabe_E" class="input-field" placeholder="Optional">
+        <div class="line-container">
+
+            <div class="line-description">E-Modul des Werkstoffs:</div>
+
+            <div class="input-group">
+
+                <div class="input-label">E / Nmm-2</div>
+
+                <input type="text" id="eingabe_E" class="input-field">
+            </div>
         </div>
 
-        <div class="input-group">
-            <div class="input-description">Poisson-Zahl (Querkontraktionszahl):</div>
-            <div class="input-label">\mu =</div>
-            <input type="text" id="eingabe_mu" class="input-field" placeholder="Optional">
+        <div class="line-container">
+
+            <div class="line-description">Poisson-Zahl (Querkontraktionszahl):</div>
+            <div class="input-group">
+
+                <div class="input-label">\mu</div>
+
+                <input type="text" id="eingabe_mu" class="input-field">
+            </div>
         </div>
 
         <hr>
@@ -191,6 +268,9 @@
         <button id="berechneButton">Ergebnisse anzeigen</button>
     </div>
 
+    <!-- =========================================================================================== -->
+    <!-- Ergebnis-Container -->
+    <!-- =========================================================================================== -->
 
     <div id="ergebnisContainer" class="container-standard" style="display: none;">
 
@@ -200,36 +280,36 @@
 
         <div class="line-with-text-left"><h2>Stapeldaten</h2></div>
     
-        <div class="input-group">
-            <div class="input-description">Bauhöhe des Stapels:</div>
-            <div class="input-label">L0 / mm =</div>
+        <div class="line-container">
+            <div class="line-description">Bauhöhe des Stapels:</div>
+            <div class="input-label">L0 / mm</div>
             <div id="ausgabe_stapel_L0" class="output-field"></div>
         </div>
 
-        <div class="input-group">
-            <div class="input-description">Maximaler Federweg:</div>
-            <div class="input-label">s / mm =</div>
+        <div class="line-container">
+            <div class="line-description">Maximaler Federweg:</div>
+            <div class="input-label">s / mm</div>
             <div id="ausgabe_stapel_s_max" class="output-field"></div>
         </div>
 
-        <div class="input-group">
-            <div class="input-description">75% Federweg:</div>
-            <div class="input-label">s / mm =</div>
+        <div class="line-container">
+            <div class="line-description">75% Federweg:</div>
+            <div class="input-label">s / mm</div>
             <div id="ausgabe_stapel_s_075" class="output-field"></div>
         </div>
 
-        <div class="input-group">
-            <div class="input-description">Kraft bei 75% Federweg:</div>
-            <div class="input-label">F / N =</div>
+        <div class="line-container">
+            <div class="line-description">Kraft bei 75% Federweg:</div>
+            <div class="input-label">F / N</div>
             <div id="ausgabe_stapel_F_075" class="output-field"></div>
         </div>
 
         <div class="line-with-text-left"><h2>Kennlinie</h2></div>
         <canvas id="plotCanvas"></canvas>
 
-        <div class="input-group">
-            <div class="input-description">Test:</div>
-            <div class="input-label">K4 =</div>
+        <div class="line-container">
+            <div class="line-description">Test:</div>
+            <div class="input-label">K4</div>
             <div id="ausgabe_K4" class="output-field"></div>
         </div>
 
