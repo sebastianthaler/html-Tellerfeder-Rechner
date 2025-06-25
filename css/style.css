@@ -15,14 +15,15 @@ html{
         - Inhalt
         - Padding (der Abstand vom Inhalt zum Rand)
         - Border (Randlinie)
-   Bei box-sizing gelten width & height für die gesamte Box bis ans Ende der Randlinie. */
-
+   Bei box-sizing gelten width & height für die gesamte Box bis ans Ende der Randlinie. 
+*/
 
 /* Größeneinheiten:
         - Pixel (px) ist ein absolutes Maß. Je nach Auflösung des Bildschirms entspricht 1 px unterschiedlich vielen physischen Pixeln.
         - Prozent (%) bezieht sich auf die Größe des direkten Elternelements im HTML-Code.
         - Viewport width (vw) bezieht sich auf den sichtbare Breite des Browsers. 1vm ist 1% dieses Bereichs.
-        - Viewport height (vh) ist dasselbe für die sichtbare Höhe. */
+        - Viewport height (vh) ist dasselbe für die sichtbare Höhe. 
+*/
 
 /* Darstellung eines Elements: display-Eintrag
         - block:        Element nimmt die gesamte, vefügbare Breite ein mit Zeilenumbruch davor und danach.
@@ -33,156 +34,188 @@ html{
             - justify-content: center / ... --- Bestimmt die Paltzierung des Inhalts für die Hauptachse.
             - align-items: center / ... --- Bestimmt die Platzierung des Inhalts quer zur Hauptachse.
             - ...
-        - inline-flex:  inline-Element ABER kann seinen Inhalt flexibel anordnen!
+        - inline-flex:  inline-Element ABER kann seinen Inhalt flexibel anordnen! 
+*/
 
-
-
-/* Stil für die gesamte Seite. Steuert auch wie der Standard-Container auf der Seite angeordnet wird. */ 
+ 
 body {
-    background-color: #868585;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
     min-height: 100vh;
     margin-top: 20px;
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
     overflow-y: auto;
+    background-color: gray;
 }
 
-/* Stile für Überschriften der verschiedenen Stufen. */
+
+/*===============================================================================================*/
+/* Überschriften */
+/*===============================================================================================*/
 h1 {
-    font-size: 2.0rem;
-    color: #333;
+
+    margin-bottom: 20px;
+
     text-align: center;
-    margin-bottom: 20px;
-}
-h2 {
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 20px;
+    font-size: 2.0rem;
+    color: black;
 }
 
-/* Allgemeiner Stil für Button Definition des Hover-Effekts. */
+h2 {
+
+    margin-bottom: 20px;
+
+    font-size: 1.2rem;
+    color: gray;
+}
+
+h3 {
+
+    margin-bottom: 20px;
+
+    font-size: 1.0rem;
+    color: gray;
+}
+
+
+/*===============================================================================================*/
+/* Buttons */
+/*===============================================================================================*/
 button {
-    cursor: pointer;
-    display: block;
+
     width: 100%;
     padding: 10px;
     border: none;
     border-radius: 4px;
     margin-top: 20px;
-    background-color: #5cb85c;
-    transition: background-color 0.3s ease;
+    display: block;
+    
     font-size: 1.0rem;
     font-weight: bold;
-    color: rgb(255, 255, 255);
-}
-button:hover {
-    background-color: #aadfaa;
-    color: #333;
+    color: white;
+    background-color: #5cb85c;
+    
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* Stil für den Container in dem alle Inhalte angeordnet werden. Dieser Stil wird einem div-Element als Klasse zugeordnet. */
+button:hover {
+
+    background-color: #aadfaa;
+    color: black;
+}
+
+
+/*===============================================================================================*/
+/* Standard-Container */
+/*===============================================================================================*/
 .container-standard {
-    background-color: #fff;
+
+    width: 600px;
     padding: 20px;
     border-radius: 8px;
-    width: 600px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
+
+    background-color: whitesmoke;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Test für horizontale Linie mit Text. Eine einfache horizontale Linie geht mit <hr>. */
+
+/*===============================================================================================*/
+/* Trennelemente */
+/*===============================================================================================*/
 .line-with-text-left {
+
     display: flex;
+    
     align-items: center;
-    color: #555;
 }
 .line-with-text-left::after {
-    content: "";
-    flex: 1;
-    border-bottom: 3px solid #ccc;
-    margin-left: 1em;
-}
 
-/* Standard-Stil für Beschreibungstexte. */
-.description {
-    font-size: 1.0rem;
-    margin-bottom: 20px;
+    border-bottom: 3px solid gray;
+    margin-left: 1em;
+    flex: 1;
+
+    content: "";
 }
 
 .vertical-separator {
-    width: 2px; /* Die Breite der Linie */
-    background-color: #ccc; /* Die Farbe der Linie */
+
+    width: 2px;
+
+    background-color: gray;
 }
+
+
+/*===============================================================================================*/
+/* Textfelder */
+/*===============================================================================================*/
+.description {
+
+    margin-bottom: 20px;
+
+    font-size: 1.0rem;
+}
+
 
 /*===============================================================================================*/
 /* Einzeiliger Container */
 /*===============================================================================================*/
-
 .line-container {
 
-    /* Größe */
     margin-bottom: 10px;
-
-    /* Inhaltsdarstellung */
     display: flex;
+
     gap: 10px;
 }
 
 .line-description {
 
-    /* Größe */
     height: 35px;
     max-width: 50%;
     margin-right: auto;
-
-    /* Inhaltsdarstellung */
     display: flex;
+
     align-items: center;
     font-size: 1.0rem;
 }
 
+
 /*===============================================================================================*/
 /* Eingabegruppe */
 /*===============================================================================================*/
-
 .input-group {
 
-    /* Größe */
     height: 35px;
     width: auto;
-
-    /* Inhaltsdarstellung */
     display: flex;
+
     align-items: center;
     gap: 10px;
 }
 
 .input-label {
 
-    /* Größe */
     height: 35px;
     margin-right: 5px;
-
-    /* Inhaltsdarstellung */
     display: flex;
+
     align-items: center;
     font-size: 1.0rem;
 }
 .input-field {
 
-    /* Größe */
     height: 35px;
     width: 100px;
     flex-grow: 0;
     padding: 10px;
 
-    /* Inhaltsdarstellung */
     font-size: 1rem;
 }
 .input-dropdown {
 
-    /* Größe */
     height: 35px;
     width: auto;
     flex-grow: 0;
@@ -191,7 +224,6 @@ button:hover {
     border: 1px solid #ccc;
     border-radius: 4px;
 
-    /* Inhaltsdarstellung */
     font-size: 0.9rem;
 }
 
@@ -200,63 +232,77 @@ button:hover {
 /* Ausgabe-Gruppe */
 /*===============================================================================================*/
 .output-group-container {
-    margin-top: 20px; /* Abstand nach oben */
-    margin-bottom: 20px; /* Abstand nach unten */
+
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
-/* Definiert eine einzelne Zeile innerhalb des Containers */
-.output-row {
-    display: flex; /* Ordnet die Elemente nebeneinander an */
-    justify-content: space-between; /* Verteilt den Platz gleichmäßig */
-    margin-bottom: 10px; /* Abstand zwischen den Zeilen */
-}
-/* Container für ein einzelnes Wertepaar (Beschreibung und Feld) */
-.output-item {
-    display: flex; /* Ordnet Beschreibung und Feld nebeneinander an */
-    align-items: center; /* Zentriert die Elemente vertikal */
-    width: 48%; /* Nimmt knapp die Hälfte der Zeilenbreite ein */
-}
-.output-description {
-    font-weight: bold;
-    font-size: 1.0rem;
-    color: #333;
-    width: 120px; /* Feste Breite für eine saubere Ausrichtung */
-}
-.output-field {
+
+.output-group { /* = input-group */
+
     height: 35px;
+    width: auto;
+    display: flex;
+
+    align-items: center;
+    gap: 10px;
+}
+
+.output-label { /* = input-label */
+
+    height: 35px;
+    margin-right: 5px;
+    display: flex;
+
+    align-items: center;
+    font-size: 1.0rem; 
+}
+
+.output-field {
+
+    height: 35px;
+    width: 100px;
     padding: 10px;
-    flex-grow: 0;
-    width: 150px; /* Gleiche Breite wie input-field für Ausrichtung */
-    font-size: 1rem;
-    background-color: #e9e9e9; /* Leichter Grauton zur Unterscheidung */
     border: 1px solid #ccc;
     border-radius: 4px;
     display: flex;
-    align-items: center; /* Vertikale Zentrierung des Textes */
+
+    flex-grow: 0;
+    align-items: center;
+    font-size: 1rem;
+    background-color: #e9e9e9; 
 }
+
 
 /*===============================================================================================*/
 /* Plot */
 /*===============================================================================================*/
 #plotCanvas {
-    max-width: 100%;
+
     max-height: 500px;
-    background-color: #ffffff;
+    max-width: 100%;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 20px;
+
+    background-color: #ffffff;
 }
+
 
 /*===============================================================================================*/
 /* Radio-Elemente */
 /*===============================================================================================*/
 .radio-group-container {
+
     display: flex;
+
     align-items: center;
     gap: 10px;
 }
 
 .radio-group-container label {
+
+    margin-left: auto;
+
     font-weight: normal;
     font-size: 0.9rem;
-    margin-left: auto;
 }

@@ -51,6 +51,7 @@
 
         <div class="line-with-text-left"><h2>Geometrie</h2></div>
 
+        <!-- -------------------- -->
         <div class="line-container">
 
             <div class="line-description">Tellefedergruppe</div>
@@ -68,6 +69,7 @@
             </div>
         </div>
 
+        <!-- -------------------- -->
         <div class="line-container">
 
             <div class="line-description">Außendurchmesser</div>
@@ -80,6 +82,7 @@
             </div>
         </div>
 
+        <!-- -------------------- -->
         <div class="line-container">
 
             <div class="line-description">Innendurchmesser</div>
@@ -92,6 +95,7 @@
             </div>
         </div>
 
+        <!-- -------------------- -->
         <div class="line-container" id="inputGroup_t12">
 
             <div class="line-description">Dicke</div>
@@ -104,6 +108,7 @@
             </div>
         </div>
 
+        <!-- -------------------- -->
         <div class="line-container" id="inputGroup_t3">
 
             <div class="line-description">Reduzierte Dicke</div>
@@ -116,6 +121,7 @@
             </div>
         </div>
 
+        <!-- -------------------- -->
         <div class="line-container" id="inputGroup_K4">
 
             <div class="line-description">Kennlinienparameter</div>
@@ -128,6 +134,7 @@
             </div>
         </div>
 
+        <!-- -------------------- -->
         <div class="line-container">
 
             <div class="line-description">Unbelastete Bauhöhe</div>
@@ -146,6 +153,7 @@
 
         <div class="line-with-text-left"><h2>Stapeldaten</h2></div>
 
+        <!-- -------------------- -->
         <div class="line-container">
 
             <div class="line-description">Gleichsinnig geschichtete Federn</div>
@@ -158,6 +166,7 @@
             </div>
         </div>
 
+        <!-- -------------------- -->
         <div class="line-container">
 
             <div class="line-description">Wechselsinnig geschichtete Federn</div>
@@ -176,7 +185,8 @@
 
         <div class="line-with-text-left"><h2>Arbeitspunkt</h2></div>
 
-        <div class="line-container">
+        <!-- -------------------- -->
+        <div class="line-container"> 
 
             <div class="line-description">Definition</div>
 
@@ -192,6 +202,7 @@
             </div>
         </div>
 
+        <!-- -------------------- -->
         <div class="line-container">
 
             <div class="line-description">Arbeitspunkt</div>
@@ -204,6 +215,7 @@
             </div>
         </div>
 
+        <!-- -------------------- -->
         <div class="line-container">
 
             <div class="line-description" style="max-width: 100%;" >Optional: Weitere Punkte definiert als Abweichung vom Arbeitspunkt</div>
@@ -240,6 +252,7 @@
 
         <div class="line-with-text-left"><h2>Benutzerdefinierte Werkstoffdaten</h2></div>
 
+        <!-- -------------------- -->
         <div class="line-container">
 
             <div class="line-description">E-Modul des Werkstoffs:</div>
@@ -252,6 +265,7 @@
             </div>
         </div>
 
+        <!-- -------------------- -->
         <div class="line-container">
 
             <div class="line-description">Poisson-Zahl (Querkontraktionszahl):</div>
@@ -276,33 +290,65 @@
 
         <h1 id="ergebnisContainer_Titel">Ergebnisse</h1>
 
+        <!-- ------------------------------------------------------------------------------------------- -->
+        <!-- AUSGABE-EINGABEN -->
+        <!-- ------------------------------------------------------------------------------------------- -->
+        
         <div class="line-with-text-left"><h2>Eingaben</h2></div>
+
+        <!-- ------------------------------------------------------------------------------------------- -->
+        <!-- AUSGABE-STAPELDATEN -->
+        <!-- ------------------------------------------------------------------------------------------- -->
 
         <div class="line-with-text-left"><h2>Stapeldaten</h2></div>
     
+        <!-- -------------------- -->
         <div class="line-container">
+            
             <div class="line-description">Bauhöhe des Stapels:</div>
-            <div class="input-label">L0 / mm</div>
-            <div id="ausgabe_stapel_L0" class="output-field"></div>
+
+            <div class="output-group">
+                <div class="output-label">L0 / mm</div>
+                <div id="ausgabe_stapel_L0" class="output-field"></div>
+            </div>
         </div>
 
+        <!-- -------------------- -->
         <div class="line-container">
+
             <div class="line-description">Maximaler Federweg:</div>
-            <div class="input-label">s / mm</div>
-            <div id="ausgabe_stapel_s_max" class="output-field"></div>
+
+            <div class="output-group">
+                <div class="output-label">s / mm</div>
+                <div id="ausgabe_stapel_s_max" class="output-field"></div>
+            </div>
         </div>
 
+        <!-- -------------------- -->
         <div class="line-container">
+
             <div class="line-description">75% Federweg:</div>
-            <div class="input-label">s / mm</div>
-            <div id="ausgabe_stapel_s_075" class="output-field"></div>
+
+            <div class="output-group">
+                <div class="output-label">s / mm</div>
+                <div id="ausgabe_stapel_s_075" class="output-field"></div>
+            </div>
         </div>
 
+        <!-- -------------------- -->
         <div class="line-container">
+
             <div class="line-description">Kraft bei 75% Federweg:</div>
-            <div class="input-label">F / N</div>
-            <div id="ausgabe_stapel_F_075" class="output-field"></div>
+
+            <div class="output-group">
+                <div class="output-label">F / N</div>
+                <div id="ausgabe_stapel_F_075" class="output-field"></div>
+            </div>
         </div>
+
+        <!-- ------------------------------------------------------------------------------------------- -->
+        <!-- KENNLINIE -->
+        <!-- ------------------------------------------------------------------------------------------- -->
 
         <div class="line-with-text-left"><h2>Kennlinie</h2></div>
         <canvas id="plotCanvas"></canvas>
@@ -313,87 +359,115 @@
             <div id="ausgabe_K4" class="output-field"></div>
         </div>
 
+        <!-- ------------------------------------------------------------------------------------------- -->
+        <!-- AUSGABE-ARBEITSPUNKTE -->
+        <!-- ------------------------------------------------------------------------------------------- -->
 
+        <!-- AP -->
         <div id="ausgabeContainer_AP" class="output-group-container">
 
             <div class="line-with-text-left"><h2>Arbeitspunkt</h2></div>
 
-            <div class="output-row">
-                <div class="output-item">
-                    <div class="output-description">s / mm:</div>
+            <div class="line-container">
+
+                <div class="output-group">
+                    <div class="output-label">s / mm:</div>
                     <div id="ausgabe_AP_s" class="output-field"></div>
                 </div>
-                <div class="output-item">
-                    <div class="output-description">F / N:</div>
+
+                <div class="output-group">
+                    <div class="output-label">F / N:</div>
                     <div id="ausgabe_AP_F" class="output-field"></div>
                 </div>
             </div>
 
-            <div class="output-row">
-                <div class="output-item">
-                    <div class="output-description">s / %:</div>
+            <div class="line-container">
+
+                <div class="output-group">
+                    <div class="output-label">s / %:</div>
                     <div id="ausgabe_AP_s_relativ" class="output-field"></div>
                 </div>
-                <div class="output-item">
-                    <div class="output-description">L / mm:</div>
+
+                <div class="output-group">
+                    <div class="output-label">L / mm:</div>
                     <div id="ausgabe_AP_L" class="output-field"></div>
                 </div>
             </div>
         </div>
 
+        <!-- Abweichung 1 -->
         <div id="ausgabeContainer_AP_Punkt1" class="output-group-container">
 
-            <div class="line-with-text-left"><h2>Arbeitspunkt Abweichung 1</h2></div>
+            <div class="line-container">
 
-            <div class="output-row">
-                <div class="output-item">
-                    <div class="output-description">s / mm:</div>
+                <div class="line-description">Abweichung 1</div>
+            </div>
+
+            <div class="line-container">
+
+                <div class="output-group">
+                    <div class="output-label">s / mm:</div>
                     <div id="ausgabe_AP_Punkt1_s" class="output-field"></div>
                 </div>
-                <div class="output-item">
-                    <div class="output-description">F / N:</div>
+
+                <div class="output-group">
+                    <div class="output-label">F / N:</div>
                     <div id="ausgabe_AP_Punkt1_F" class="output-field"></div>
                 </div>
             </div>
 
-            <div class="output-row">
-                <div class="output-item">
-                    <div class="output-description">s / %:</div>
+            <div class="line-container">
+
+                <div class="output-group">
+                    <div class="output-label">s / %:</div>
                     <div id="ausgabe_AP_Punkt1_s_relativ" class="output-field"></div>
                 </div>
-                <div class="output-item">
-                    <div class="output-description">L / mm:</div>
+
+                <div class="output-group">
+                    <div class="output-label">L / mm:</div>
                     <div id="ausgabe_AP_Punkt1_L" class="output-field"></div>
                 </div>
             </div>
         </div>
 
+        <!-- Abweichung 2 -->
         <div id="ausgabeContainer_AP_Punkt2" class="output-group-container">
 
-            <div class="line-with-text-left"><h2>Arbeitspunkt Abweichung 2</h2></div>
+            <div class="line-container">
 
-            <div class="output-row">
-                <div class="output-item">
-                    <div class="output-description">s / mm:</div>
+                <div class="line-description">Abweichung 2</div>
+            </div>
+
+            <div class="line-container">
+
+                <div class="output-group">
+                    <div class="output-label">s / mm:</div>
                     <div id="ausgabe_AP_Punkt2_s" class="output-field"></div>
                 </div>
-                <div class="output-item">
-                    <div class="output-description">F / N:</div>
+
+                <div class="output-group">
+                    <div class="output-label">F / N:</div>
                     <div id="ausgabe_AP_Punkt2_F" class="output-field"></div>
                 </div>
             </div>
 
-            <div class="output-row">
-                <div class="output-item">
-                    <div class="output-description">s / %:</div>
+            <div class="line-container">
+
+                <div class="output-group">
+                    <div class="output-label">s / %:</div>
                     <div id="ausgabe_AP_Punkt2_s_relativ" class="output-field"></div>
                 </div>
-                <div class="output-item">
-                    <div class="output-description">L / mm:</div>
+
+                <div class="output-group">
+                    <div class="output-label">L / mm:</div>
                     <div id="ausgabe_AP_Punkt2_L" class="output-field"></div>
                 </div>
             </div>
         </div>
+
+        <!-- ------------------------------------------------------------------------------------------- -->
+        <!-- BUTTONS UNTEN -->
+        <!-- ------------------------------------------------------------------------------------------- -->
 
         <hr>        
         <button id="zurückButton">Zurück zur Eingabe</button>
