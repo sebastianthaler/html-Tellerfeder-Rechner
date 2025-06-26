@@ -1,5 +1,6 @@
-/* Dies ist der CSS-Bereich. */
-
+/*===============================================================================================*/
+/* Basis */
+/*===============================================================================================*/
 html{
     font-size: 16px; /* Bezugsgröße: Aufrufbar als 1rem, bzw so skalierbar. */
     font-family: 'Noto Sans', sans-serif; /* Sans-serif ist Arial, andere Optionen Helvetica, Fira Sans, Noto Sans, etc. */
@@ -9,34 +10,6 @@ html{
     *, *::before, *::after {
     box-sizing: inherit;
     }
-
-/* Größendefinition: box-sizing gilt damit für alle Elemente die nicht explizit anders definiert werden:
-   Eine Box besteht aus
-        - Inhalt
-        - Padding (der Abstand vom Inhalt zum Rand)
-        - Border (Randlinie)
-   Bei box-sizing gelten width & height für die gesamte Box bis ans Ende der Randlinie. 
-*/
-
-/* Größeneinheiten:
-        - Pixel (px) ist ein absolutes Maß. Je nach Auflösung des Bildschirms entspricht 1 px unterschiedlich vielen physischen Pixeln.
-        - Prozent (%) bezieht sich auf die Größe des direkten Elternelements im HTML-Code.
-        - Viewport width (vw) bezieht sich auf den sichtbare Breite des Browsers. 1vm ist 1% dieses Bereichs.
-        - Viewport height (vh) ist dasselbe für die sichtbare Höhe. 
-*/
-
-/* Darstellung eines Elements: display-Eintrag
-        - block:        Element nimmt die gesamte, vefügbare Breite ein mit Zeilenumbruch davor und danach.
-        - inline:       Element ist nur so groß wie sein Inhalt.
-        - inline-block: block-Element ABER ohne Zeilenumbruch.
-        - flex:         block-Element ABER kann seinen Inhalt flexibel anordnen!             
-            - flex-direction: row (Standard) / column --- Bestimmt die Hauptachse und damit die Ausrichtung des Inhalts.
-            - justify-content: center / ... --- Bestimmt die Paltzierung des Inhalts für die Hauptachse.
-            - align-items: center / ... --- Bestimmt die Platzierung des Inhalts quer zur Hauptachse.
-            - ...
-        - inline-flex:  inline-Element ABER kann seinen Inhalt flexibel anordnen! 
-*/
-
  
 body {
 
@@ -48,6 +21,10 @@ body {
     align-items: center;
     overflow-y: auto;
     background-color: gray;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 
@@ -113,12 +90,12 @@ button:hover {
 /*===============================================================================================*/
 .container-standard {
 
-    width: 600px;
+    width: 650px;
     padding: 20px;
     border-radius: 8px;
     margin-top: 20px;
 
-    background-color: whitesmoke;
+    background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -165,6 +142,7 @@ button:hover {
 /*===============================================================================================*/
 .line-container {
 
+    padding-left: 10px;
     margin-bottom: 10px;
     display: flex;
 
@@ -182,11 +160,11 @@ button:hover {
     font-size: 1.0rem;
 }
 
+/*===============================================================================================*/
+/* xxx */
+/*===============================================================================================*/
 
-/*===============================================================================================*/
-/* Eingabegruppe */
-/*===============================================================================================*/
-.input-group {
+.vertical-item {
 
     height: 35px;
     width: auto;
@@ -195,6 +173,10 @@ button:hover {
     align-items: center;
     gap: 10px;
 }
+
+/*===============================================================================================*/
+/* Eingabe-Elemente */
+/*===============================================================================================*/
 
 .input-label {
 
@@ -237,16 +219,6 @@ button:hover {
     margin-bottom: 20px;
 }
 
-.output-group { /* = input-group */
-
-    height: 35px;
-    width: auto;
-    display: flex;
-
-    align-items: center;
-    gap: 10px;
-}
-
 .output-label { /* = input-label */
 
     height: 35px;
@@ -260,7 +232,7 @@ button:hover {
 .output-field {
 
     height: 35px;
-    width: 100px;
+    width: 80px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -280,6 +252,7 @@ button:hover {
 
     max-height: 500px;
     max-width: 100%;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 20px;
@@ -304,5 +277,5 @@ button:hover {
     margin-left: auto;
 
     font-weight: normal;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }

@@ -42,7 +42,7 @@
 
             <div class="line-description">Titel der Berechnung:</div>
 
-            <input type="text" id="eingabe_Titel" class="input-field" style="width:300px;">
+            <input type="text" id="eingabe_Titel" class="input-field" style="width:300px;" placeholder="Optional">
         </div>
 
         <!-- ------------------------------------------------------------------------------------------- -->
@@ -52,11 +52,9 @@
         <div class="line-with-text-left"><h2>Geometrie</h2></div>
 
         <!-- -------------------- -->
-        <div class="line-container">
+        <div class="line-container" style="justify-content: center;">
 
-            <div class="line-description">Tellefedergruppe</div>
-
-            <div class="input-group">
+            <div class="vertical-item">
                 
                 <div class="radio-group-container">
 
@@ -74,7 +72,7 @@
 
             <div class="line-description">Außendurchmesser</div>
 
-            <div class="input-group">
+            <div class="vertical-item">
 
                 <div class="input-label">De / mm</div>
 
@@ -87,7 +85,7 @@
 
             <div class="line-description">Innendurchmesser</div>
 
-            <div class="input-group">
+            <div class="vertical-item">
 
                 <div class="input-label">Di / mm</div>
 
@@ -100,7 +98,7 @@
 
             <div class="line-description">Dicke</div>
 
-            <div class="input-group">
+            <div class="vertical-item">
 
                 <div class="input-label">t / mm</div>
 
@@ -113,7 +111,7 @@
 
             <div class="line-description">Reduzierte Dicke</div>
 
-            <div class="input-group">
+            <div class="vertical-item">
 
                 <div class="input-label">t' / mm</div>
 
@@ -126,7 +124,7 @@
 
             <div class="line-description">Kennlinienparameter</div>
 
-            <div class="input-group">
+            <div class="vertical-item">
 
                 <div class="input-label">K4 * (h0'/t') / -</div>
 
@@ -139,7 +137,7 @@
 
             <div class="line-description">Unbelastete Bauhöhe</div>
 
-            <div class="input-group">
+            <div class="vertical-item">
 
                 <div class="input-label">L0 / mm</div>
 
@@ -158,11 +156,11 @@
 
             <div class="line-description">Gleichsinnig geschichtete Federn</div>
 
-            <div class="input-group">
+            <div class="vertical-item">
 
                 <div class="input-label">n / -</div>
 
-                <input type="text" id="eingabe_stapel_n" class="input-field">
+                <input type="text" id="eingabe_stapel_n" class="input-field" placeholder="Optional">
             </div>
         </div>
 
@@ -171,11 +169,11 @@
 
             <div class="line-description">Wechselsinnig geschichtete Federn</div>
 
-            <div class="input-group">
+            <div class="vertical-item">
 
                 <div class="input-label">i / -</div>
 
-                <input type="text" id="eingabe_stapel_i" class="input-field">
+                <input type="text" id="eingabe_stapel_i" class="input-field" placeholder="Optional">
             </div>
         </div>
 
@@ -186,18 +184,16 @@
         <div class="line-with-text-left"><h2>Arbeitspunkt</h2></div>
 
         <!-- -------------------- -->
-        <div class="line-container"> 
+        <div class="line-container" style="justify-content: center;"> 
 
-            <div class="line-description">Definition</div>
-
-            <div class="input-group">
+            <div class="vertical-item">
 
                 <div class="radio-group-container">
 
                     <input type="radio" id="radioAuswahlFederweg" name="arbeitspunktdefinition" checked>
-                    <label for="radioAuswahlFederweg">über Federweg</label>
+                    <label for="radioAuswahlFederweg">Definition über Federweg</label>
                     <input type="radio" id="radioAuswahlFederkraft" name="arbeitspunktdefinition">
-                    <label for="radioAuswahlFederkraft">über Federkraft</label>
+                    <label for="radioAuswahlFederkraft">Definition über Federkraft</label>
                 </div>
             </div>
         </div>
@@ -207,43 +203,43 @@
 
             <div class="line-description">Arbeitspunkt</div>
 
-            <div class="input-group">
+            <div class="vertical-item">
 
                 <div class="input-label" id="einheit_label_AP">s / mm</div>
 
-                <input type="text" id="eingabe_AP" class="input-field">
+                <input type="text" id="eingabe_AP" class="input-field" placeholder="Optional">
             </div>
         </div>
 
         <!-- -------------------- -->
         <div class="line-container">
 
-            <div class="line-description" style="max-width: 100%;" >Optional: Weitere Punkte definiert als Abweichung vom Arbeitspunkt</div>
-        </div>
+            <div class="line-description">Abweichung 1</div>
 
-        <div class="line-container">
-
-            <div class="input-group" style="margin-left: auto;">
-
-                <input type="text" id="eingabe_AP_Abweichung_1" class="input-field" placeholder="Punkt 1">
+            <div class="vertical-item">
 
                 <select id="einheit_AP_Abweichung_1" class="input-dropdown">
                     <option value="mm">mm</option>
                     <option value="percent">%</option>
                 </select>
+
+                <input type="text" id="eingabe_AP_Abweichung_1" class="input-field" placeholder="Optional">
             </div>
+        </div>
 
-            <div class="vertical-separator"></div>
+        <div class="line-container">
 
-            <div class="input-group">
+            <div class="line-description">Abweichung 2</div>
 
-                <input type="text" id="eingabe_AP_Abweichung_2" class="input-field" placeholder="Punkt 2">
+            <div class="vertical-item">
 
                 <select id="einheit_AP_Abweichung_2" class="input-dropdown">
                     <option value="mm">mm</option>
                     <option value="percent">%</option>
                 </select>
             </div>
+
+            <input type="text" id="eingabe_AP_Abweichung_2" class="input-field" placeholder="Optional">
         </div>
 
         <!-- ------------------------------------------------------------------------------------------- -->
@@ -257,11 +253,11 @@
 
             <div class="line-description">E-Modul des Werkstoffs:</div>
 
-            <div class="input-group">
+            <div class="vertical-item">
 
                 <div class="input-label">E / Nmm-2</div>
 
-                <input type="text" id="eingabe_E" class="input-field">
+                <input type="text" id="eingabe_E" class="input-field" placeholder="Optional">
             </div>
         </div>
 
@@ -269,11 +265,11 @@
         <div class="line-container">
 
             <div class="line-description">Poisson-Zahl (Querkontraktionszahl):</div>
-            <div class="input-group">
+            <div class="vertical-item">
 
                 <div class="input-label">\mu</div>
 
-                <input type="text" id="eingabe_mu" class="input-field">
+                <input type="text" id="eingabe_mu" class="input-field" placeholder="Optional">
             </div>
         </div>
 
@@ -291,12 +287,6 @@
         <h1 id="ergebnisContainer_Titel">Ergebnisse</h1>
 
         <!-- ------------------------------------------------------------------------------------------- -->
-        <!-- AUSGABE-EINGABEN -->
-        <!-- ------------------------------------------------------------------------------------------- -->
-        
-        <div class="line-with-text-left"><h2>Eingaben</h2></div>
-
-        <!-- ------------------------------------------------------------------------------------------- -->
         <!-- AUSGABE-STAPELDATEN -->
         <!-- ------------------------------------------------------------------------------------------- -->
 
@@ -307,7 +297,7 @@
             
             <div class="line-description">Bauhöhe des Stapels:</div>
 
-            <div class="output-group">
+            <div class="vertical-item">
                 <div class="output-label">L0 / mm</div>
                 <div id="ausgabe_stapel_L0" class="output-field"></div>
             </div>
@@ -318,33 +308,29 @@
 
             <div class="line-description">Maximaler Federweg:</div>
 
-            <div class="output-group">
+            <div class="vertical-item">
                 <div class="output-label">s / mm</div>
                 <div id="ausgabe_stapel_s_max" class="output-field"></div>
             </div>
         </div>
 
-        <!-- -------------------- -->
+        <div class="line-with-text-left"><h2>Prüfpunkt</h2></div>
+
         <div class="line-container">
 
-            <div class="line-description">75% Federweg:</div>
-
-            <div class="output-group">
+            <div class="vertical-item" style="margin-left: auto;">
                 <div class="output-label">s / mm</div>
                 <div id="ausgabe_stapel_s_075" class="output-field"></div>
             </div>
-        </div>
 
-        <!-- -------------------- -->
-        <div class="line-container">
+            <div class="vertical-separator"></div>
 
-            <div class="line-description">Kraft bei 75% Federweg:</div>
-
-            <div class="output-group">
+            <div class="vertical-item" style="margin-right: auto;">
                 <div class="output-label">F / N</div>
                 <div id="ausgabe_stapel_F_075" class="output-field"></div>
             </div>
         </div>
+
 
         <!-- ------------------------------------------------------------------------------------------- -->
         <!-- KENNLINIE -->
@@ -354,7 +340,7 @@
         <canvas id="plotCanvas"></canvas>
 
         <div class="line-container">
-            <div class="line-description">Test:</div>
+            <div class="line-description">Kennlinienparameter:</div>
             <div class="input-label">K4</div>
             <div id="ausgabe_K4" class="output-field"></div>
         </div>
@@ -366,110 +352,134 @@
         <!-- AP -->
         <div id="ausgabeContainer_AP" class="output-group-container">
 
-            <div class="line-with-text-left"><h2>Arbeitspunkt</h2></div>
+            <div class="line-with-text-left"><h2>Weitere Punkte</h2></div>
 
-            <div class="line-container">
+            <div class="line-container" style="margin-bottom: 25px;">
 
-                <div class="output-group">
-                    <div class="output-label">s / mm:</div>
+                <div class="line-description bold">Arbeitspunkt</div>
+            </div>
+
+            <div class="line-container" style="justify-content: center;">
+
+                <div class="vertical-item">
+                    <div class="output-label">s / mm</div>
                     <div id="ausgabe_AP_s" class="output-field"></div>
                 </div>
-
-                <div class="output-group">
-                    <div class="output-label">F / N:</div>
+                <div class="vertical-separator"></div>
+                <div class="vertical-item">
+                    <div class="output-label">F / N</div>
                     <div id="ausgabe_AP_F" class="output-field"></div>
                 </div>
             </div>
 
             <div class="line-container">
 
-                <div class="output-group">
-                    <div class="output-label">s / %:</div>
+                <div class="line-description">Einfederung:</div>
+                <div class="vertical-item">
+                    <div class="output-label">s / %</div>
                     <div id="ausgabe_AP_s_relativ" class="output-field"></div>
                 </div>
+            </div>
 
-                <div class="output-group">
-                    <div class="output-label">L / mm:</div>
+            <div class="line-container">
+
+                <div class="line-description">Bauhöhe:</div>
+                <div class="vertical-item">
+                    <div class="output-label">L / mm</div>
                     <div id="ausgabe_AP_L" class="output-field"></div>
                 </div>
             </div>
+            <hr>
         </div>
 
         <!-- Abweichung 1 -->
         <div id="ausgabeContainer_AP_Punkt1" class="output-group-container">
 
-            <div class="line-container">
+            <div class="line-container" style="margin-bottom: 25px;">
 
-                <div class="line-description">Abweichung 1</div>
+                <div class="line-description bold">Abweichung 1</div>
             </div>
 
-            <div class="line-container">
+            <div class="line-container" style="justify-content: center;">
 
-                <div class="output-group">
-                    <div class="output-label">s / mm:</div>
+                <div class="vertical-item">
+                    <div class="output-label">s / mm</div>
                     <div id="ausgabe_AP_Punkt1_s" class="output-field"></div>
                 </div>
-
-                <div class="output-group">
-                    <div class="output-label">F / N:</div>
+                <div class="vertical-separator"></div>
+                <div class="vertical-item">
+                    <div class="output-label">F / N</div>
                     <div id="ausgabe_AP_Punkt1_F" class="output-field"></div>
                 </div>
             </div>
 
             <div class="line-container">
 
-                <div class="output-group">
-                    <div class="output-label">s / %:</div>
+                <div class="line-description">Einfederung:</div>
+                <div class="vertical-item">
+                    <div class="output-label">s / %</div>
                     <div id="ausgabe_AP_Punkt1_s_relativ" class="output-field"></div>
                 </div>
+            </div>
 
-                <div class="output-group">
-                    <div class="output-label">L / mm:</div>
+            <div class="line-container">
+
+                <div class="line-description">Bauhöhe:</div>
+                <div class="vertical-item">
+                    <div class="output-label">L / mm</div>
                     <div id="ausgabe_AP_Punkt1_L" class="output-field"></div>
                 </div>
             </div>
+
+            <hr>
         </div>
 
         <!-- Abweichung 2 -->
         <div id="ausgabeContainer_AP_Punkt2" class="output-group-container">
 
-            <div class="line-container">
+            <div class="line-container" style="margin-bottom: 25px;">
 
-                <div class="line-description">Abweichung 2</div>
+                <div class="line-description bold">Abweichung 2</div>
             </div>
 
-            <div class="line-container">
+            <div class="line-container" style="justify-content: center;">
 
-                <div class="output-group">
-                    <div class="output-label">s / mm:</div>
+                <div class="vertical-item">
+                    <div class="output-label">s / mm</div>
                     <div id="ausgabe_AP_Punkt2_s" class="output-field"></div>
                 </div>
-
-                <div class="output-group">
-                    <div class="output-label">F / N:</div>
+                <div class="vertical-separator"></div>
+                <div class="vertical-item">
+                    <div class="output-label">F / N</div>
                     <div id="ausgabe_AP_Punkt2_F" class="output-field"></div>
                 </div>
             </div>
 
             <div class="line-container">
 
-                <div class="output-group">
-                    <div class="output-label">s / %:</div>
+                <div class="line-description">Einfederung:</div>
+                <div class="vertical-item">
+                    <div class="output-label">s / %</div>
                     <div id="ausgabe_AP_Punkt2_s_relativ" class="output-field"></div>
                 </div>
+            </div>
 
-                <div class="output-group">
-                    <div class="output-label">L / mm:</div>
+            <div class="line-container">
+
+                <div class="line-description">Bauhöhe:</div>
+                <div class="vertical-item">
+                    <div class="output-label">L / mm</div>
                     <div id="ausgabe_AP_Punkt2_L" class="output-field"></div>
                 </div>
             </div>
+
+            <hr>
         </div>
 
         <!-- ------------------------------------------------------------------------------------------- -->
         <!-- BUTTONS UNTEN -->
         <!-- ------------------------------------------------------------------------------------------- -->
-
-        <hr>        
+      
         <button id="zurückButton">Zurück zur Eingabe</button>
         <button id="neueBerechnungButton">Neue Berechnung</button>
     </div>

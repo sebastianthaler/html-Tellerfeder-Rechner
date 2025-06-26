@@ -1,11 +1,6 @@
-/* Hier kommt Java-Skript. */
-
 //--------------------------------------------------------------------------\\
 //                          Variablen                                        
 //--------------------------------------------------------------------------\\
-
-// - const Variablen können nicht neu definiert werden. Ihr Inhalt kann trotzdem verändert werden, z.B. bei einem Array.
-// - let Variablen können neu definiert werden.
 
 // Variablen mit Referenzen zu den HTML-Elementen:
 // Referenzen zu den Elementen mit wechselnder Anzeige.
@@ -94,7 +89,7 @@ let delta;
 let K1;
 let c1;
 let c2;
-let K4 = 1111;                  // zum Überprüfen der Berechnung.
+let K4 = 9;                  // zum Überprüfen der Berechnung.
 
 let stapel_n;
 let stapel_i;
@@ -700,7 +695,7 @@ berechneButton.addEventListener("click", function() {
     //=========//
 
     // Test
-    ausgabe_K4.textContent = K4.toFixed(5);
+    ausgabe_K4.textContent = K4.toFixed(4);
 
     // Stapeldaten.
     ausgabe_stapel_L0.textContent = stapel_L0.toFixed(2);
