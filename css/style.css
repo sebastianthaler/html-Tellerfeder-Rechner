@@ -1,6 +1,18 @@
 /*===============================================================================================*/
 /* Basis */
 /*===============================================================================================*/
+:root {
+  --myBackgroundColor: hsl(120, 10%, 50%);
+
+  --myButtonGreen: hsl(120, 50%, 50%);
+  --myButtonGreenHover: hsl(120, 85%, 85%);
+
+  --myWhite: hsl(120, 10%, 95%);
+  --myBlack: hsl(120, 90%, 5%);
+  
+  --myBorderColor: #ccc;
+}
+
 html{
     font-size: 16px; /* Bezugsgröße: Aufrufbar als 1rem, bzw so skalierbar. */
     font-family: 'Noto Sans', sans-serif; /* Sans-serif ist Arial, andere Optionen Helvetica, Fira Sans, Noto Sans, etc. */
@@ -20,7 +32,7 @@ body {
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
-    background-color: gray;
+    background-color: var(--myBackgroundColor);
 }
 
 .bold {
@@ -37,7 +49,7 @@ h1 {
 
     text-align: center;
     font-size: 2.0rem;
-    color: black;
+    color: var(--myBlack);
 }
 
 h2 {
@@ -45,15 +57,7 @@ h2 {
     margin-bottom: 20px;
 
     font-size: 1.2rem;
-    color: gray;
-}
-
-h3 {
-
-    margin-bottom: 20px;
-
-    font-size: 1.0rem;
-    color: gray;
+    color: var(--myBlack);
 }
 
 
@@ -71,8 +75,8 @@ button {
     
     font-size: 1.0rem;
     font-weight: bold;
-    color: white;
-    background-color: #5cb85c;
+    color: var(--myWhite);
+    background-color: var(--myButtonGreen);
     
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -80,8 +84,8 @@ button {
 
 button:hover {
 
-    background-color: #aadfaa;
-    color: black;
+    background-color: var(--myButtonGreenHover);
+    color: var(--myBlack);
 }
 
 
@@ -111,7 +115,7 @@ button:hover {
 }
 .line-with-text-left::after {
 
-    border-bottom: 3px solid gray;
+    border-bottom: 3px solid var(--myBlack);
     margin-left: 1em;
     flex: 1;
 
@@ -122,7 +126,7 @@ button:hover {
 
     width: 2px;
 
-    background-color: gray;
+    background-color: var(--myBlack);
 }
 
 
@@ -203,7 +207,7 @@ button:hover {
     flex-grow: 0;
     flex-shrink: 0;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--myBorderColor);
     border-radius: 4px;
 
     font-size: 0.9rem;
@@ -234,14 +238,14 @@ button:hover {
     height: 35px;
     width: 80px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--myBorderColor);
     border-radius: 4px;
     display: flex;
 
     flex-grow: 0;
     align-items: center;
     font-size: 1rem;
-    background-color: #e9e9e9; 
+    background-color: gainsboro;
 }
 
 
@@ -253,11 +257,11 @@ button:hover {
     max-height: 500px;
     max-width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--myBorderColor);
     border-radius: 4px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
-    background-color: #ffffff;
+    background-color: white;
 }
 
 

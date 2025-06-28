@@ -695,7 +695,7 @@ berechneButton.addEventListener("click", function() {
     //=========//
 
     // Test
-    ausgabe_K4.textContent = K4.toFixed(4);
+    //ausgabe_K4.textContent = K4.toFixed(4);
 
     // Stapeldaten.
     ausgabe_stapel_L0.textContent = stapel_L0.toFixed(2);
@@ -764,12 +764,12 @@ berechneButton.addEventListener("click", function() {
 
     // Datensätze für das Diagramm:
 
-    // 1. Beginne mit dem Datensatz für die Kennlinie
+    // Datensatz für die Kennlinie.
     let chartDatasets = [{
         label: `Federkennlinie`,
         data: federkennlinieData,
         type: 'line',
-        borderColor: 'rgb(153, 15, 15)',
+        borderColor: 'black',
         tension: 0.1,
         fill: false,
         pointRadius: 0, // Es werden keine einzelnen Punkt angezeigt.
@@ -777,22 +777,23 @@ berechneButton.addEventListener("click", function() {
         pointHoverRadius: 0,
     }];
 
-    // 2. Füge den 75%-Punkt hinzu.
+    // Prüfpunkt.
     chartDatasets.push({
         label: 'Prüfpunkt',
         data: [{ x: stapel_s_075, y: stapel_F_075 }],
         type: 'scatter',
-        backgroundColor: 'rgb(0, 100, 255)',
-        pointRadius: 5,
+        backgroundColor: 'black',
+        pointRadius: 7,
         pointHitRadius: 10,
     });
 
-    // 3. Füge dynamisch für jeden Arbeitspunkt einen Datensatz hinzu
+    // Arbeitspunkte, falls vorhanden.
+    
     // Stile für die drei Punkte
     const apPunktStyles = [
-        { label: 'Arbeitspunkt', color: 'rgb(255, 99, 132)' },   // Rot
-        { label: 'AP Abweichung 1', color: 'rgb(54, 162, 235)' }, // Blau
-        { label: 'AP Abweichung 2', color: 'rgb(75, 192, 192)' }  // Grün
+        { label: 'Arbeitspunkt', color: 'green' },
+        { label: 'Abweichung 1', color: 'orange' },
+        { label: 'Abweichung 2', color: 'red' },
     ];
 
     // Falls ein Punkt im output Array ist, wird er hinzugefügt.
@@ -803,7 +804,7 @@ berechneButton.addEventListener("click", function() {
                 data: [{ x: apPunkt.s, y: apPunkt.F }],
                 type: 'scatter',
                 backgroundColor: apPunktStyles[index] ? apPunktStyles[index].color : 'rgb(0,0,0)',
-                pointRadius: 5,      
+                pointRadius: 7,      
                 pointHitRadius: 10,
             });
         }
@@ -898,7 +899,7 @@ berechneButton.addEventListener("click", function() {
                     },
                     padding: 10,
                     cornerRadius: 4,
-                    displayColors: false,
+                    displayColors: true,
                     
                     // Callback, um den Tooltip-Text anzupassen
                     callbacks: {
