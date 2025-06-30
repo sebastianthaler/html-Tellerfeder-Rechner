@@ -769,7 +769,7 @@ berechneButton.addEventListener("click", function() {
         label: `Federkennlinie`,
         data: federkennlinieData,
         type: 'line',
-        borderColor: 'black',
+        borderColor: '#707070',
         tension: 0.1,
         fill: false,
         pointRadius: 0, // Es werden keine einzelnen Punkt angezeigt.
@@ -782,7 +782,7 @@ berechneButton.addEventListener("click", function() {
         label: 'Prüfpunkt',
         data: [{ x: stapel_s_075, y: stapel_F_075 }],
         type: 'scatter',
-        backgroundColor: 'black',
+        backgroundColor: '#707070',
         pointRadius: 7,
         pointHitRadius: 10,
     });

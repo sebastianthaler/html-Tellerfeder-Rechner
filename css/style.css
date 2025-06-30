@@ -4,11 +4,11 @@
 :root {
   --myBackgroundColor: hsl(120, 10%, 50%);
 
-  --myButtonGreen: hsl(120, 50%, 50%);
+  --myButtonGreen: hsl(120, 50%, 40%);
   --myButtonGreenHover: hsl(120, 85%, 85%);
 
   --myWhite: hsl(120, 10%, 95%);
-  --myBlack: hsl(120, 90%, 5%);
+  --myGray: hsl(120, 2%, 50%);
   
   --myBorderColor: #ccc;
 }
@@ -45,11 +45,11 @@ body {
 /*===============================================================================================*/
 h1 {
 
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
     text-align: center;
     font-size: 2.0rem;
-    color: var(--myBlack);
+    color: black;
 }
 
 h2 {
@@ -57,7 +57,7 @@ h2 {
     margin-bottom: 20px;
 
     font-size: 1.2rem;
-    color: var(--myBlack);
+    color: var(--myGray);
 }
 
 
@@ -85,7 +85,7 @@ button {
 button:hover {
 
     background-color: var(--myButtonGreenHover);
-    color: var(--myBlack);
+    color: var(--myGray);
 }
 
 
@@ -115,7 +115,7 @@ button:hover {
 }
 .line-with-text-left::after {
 
-    border-bottom: 3px solid var(--myBlack);
+    border-bottom: 3px solid var(--myGray);
     margin-left: 1em;
     flex: 1;
 
@@ -126,7 +126,7 @@ button:hover {
 
     width: 2px;
 
-    background-color: var(--myBlack);
+    background-color: var(--myGray);
 }
 
 
@@ -245,7 +245,6 @@ button:hover {
     flex-grow: 0;
     align-items: center;
     font-size: 1rem;
-    background-color: gainsboro;
 }
 
 

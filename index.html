@@ -74,7 +74,7 @@
 
             <div class="vertical-item">
 
-                <div class="input-label">De / mm</div>
+                <div class="input-label"><b>D<sub>e</sub></b>&nbsp;/ mm</div>
 
                 <input type="text" id="eingabe_Da" class="input-field" placeholder="Pflichtfeld">
             </div>
@@ -87,7 +87,7 @@
 
             <div class="vertical-item">
 
-                <div class="input-label">Di / mm</div>
+                <div class="input-label"><b>D<sub>i</sub></b>&nbsp;/ mm</div>
 
                 <input type="text" id="eingabe_Di" class="input-field" placeholder="Pflichtfeld">
             </div>
@@ -100,7 +100,7 @@
 
             <div class="vertical-item">
 
-                <div class="input-label">t / mm</div>
+                <div class="input-label"><b>t</b>&nbsp;/ mm</div>
 
                 <input type="text" id="eingabe_t" class="input-field" placeholder="Pflichtfeld">
             </div>
@@ -113,7 +113,7 @@
 
             <div class="vertical-item">
 
-                <div class="input-label">t' / mm</div>
+                <div class="input-label"><b>t'</b>&nbsp;/ mm</div>
 
                 <input type="text" id="eingabe_t_strich" class="input-field" placeholder="Pflichtfeld">
             </div>
@@ -126,7 +126,7 @@
 
             <div class="vertical-item">
 
-                <div class="input-label">K4 * (h0'/t') / -</div>
+                <div class="input-label"><b>K4 * (h0'/t')</b>&nbsp;/ -</div>
 
                 <input type="text" id="eingabe_K4" class="input-field" placeholder="wenn t=t'">
             </div>
@@ -139,7 +139,7 @@
 
             <div class="vertical-item">
 
-                <div class="input-label">L0 / mm</div>
+                <div class="input-label"><b>l<sub>0</sub></b>&nbsp;/ mm</div>
 
                 <input type="text" id="eingabe_L0" class="input-field" placeholder="Pflichtfeld">
             </div>
@@ -158,7 +158,7 @@
 
             <div class="vertical-item">
 
-                <div class="input-label">n / -</div>
+                <div class="input-label"><b>n</b>&nbsp;/ -</div>
 
                 <input type="text" id="eingabe_stapel_n" class="input-field" placeholder="Optional">
             </div>
@@ -171,7 +171,7 @@
 
             <div class="vertical-item">
 
-                <div class="input-label">i / -</div>
+                <div class="input-label"><b>i</b>&nbsp;/ -</div>
 
                 <input type="text" id="eingabe_stapel_i" class="input-field" placeholder="Optional">
             </div>
@@ -205,7 +205,7 @@
 
             <div class="vertical-item">
 
-                <div class="input-label" id="einheit_label_AP">s / mm</div>
+                <div class="input-label" id="einheit_label_AP">siehe Java-Script</div>
 
                 <input type="text" id="eingabe_AP" class="input-field" placeholder="Optional">
             </div>
@@ -255,7 +255,7 @@
 
             <div class="vertical-item">
 
-                <div class="input-label">E / Nmm-2</div>
+                <div class="input-label"><b>E</b>&nbsp;/ MPa</div>
 
                 <input type="text" id="eingabe_E" class="input-field" placeholder="Optional">
             </div>
@@ -267,7 +267,7 @@
             <div class="line-description">Poisson-Zahl (Querkontraktionszahl):</div>
             <div class="vertical-item">
 
-                <div class="input-label">\mu</div>
+                <div class="input-label"><b>&mu;</b>&nbsp;/ -</div>
 
                 <input type="text" id="eingabe_mu" class="input-field" placeholder="Optional">
             </div>
@@ -298,7 +298,7 @@
             <div class="line-description">Bauhöhe des Stapels:</div>
 
             <div class="vertical-item">
-                <div class="output-label">L0 / mm</div>
+                <div class="output-label"><b>L<sub>0</sub></b>&nbsp;/ mm</div>
                 <div id="ausgabe_stapel_L0" class="output-field"></div>
             </div>
         </div>
@@ -309,7 +309,7 @@
             <div class="line-description">Maximaler Federweg:</div>
 
             <div class="vertical-item">
-                <div class="output-label">s / mm</div>
+                <div class="output-label"><b>s</b>&nbsp;/ mm</div>
                 <div id="ausgabe_stapel_s_max" class="output-field"></div>
             </div>
         </div>
@@ -319,14 +319,14 @@
         <div class="line-container">
 
             <div class="vertical-item" style="margin-left: auto;">
-                <div class="output-label">s / mm</div>
+                <div class="output-label"><b>s</b>&nbsp;/ mm</div>
                 <div id="ausgabe_stapel_s_075" class="output-field"></div>
             </div>
 
             <div class="vertical-separator"></div>
 
             <div class="vertical-item" style="margin-right: auto;">
-                <div class="output-label">F / N</div>
+                <div class="output-label"><b>F</b>&nbsp;/ N</div>
                 <div id="ausgabe_stapel_F_075" class="output-field"></div>
             </div>
         </div>
@@ -357,12 +357,12 @@
             <div class="line-container" style="justify-content: center;">
 
                 <div class="vertical-item">
-                    <div class="output-label">s / mm</div>
+                    <div class="output-label"><b>s</b>&nbsp;/ mm</div>
                     <div id="ausgabe_AP_s" class="output-field"></div>
                 </div>
                 <div class="vertical-separator"></div>
                 <div class="vertical-item">
-                    <div class="output-label">F / N</div>
+                    <div class="output-label"><b>F</b>&nbsp;/ N</div>
                     <div id="ausgabe_AP_F" class="output-field"></div>
                 </div>
             </div>
@@ -371,7 +371,7 @@
 
                 <div class="line-description">Einfederung:</div>
                 <div class="vertical-item">
-                    <div class="output-label">s / %</div>
+                    <div class="output-label"><b>s</b>&nbsp;/ %</div>
                     <div id="ausgabe_AP_s_relativ" class="output-field"></div>
                 </div>
             </div>
@@ -380,7 +380,7 @@
 
                 <div class="line-description">Bauhöhe:</div>
                 <div class="vertical-item">
-                    <div class="output-label">L / mm</div>
+                    <div class="output-label"><b>L</b>&nbsp;/ mm</div>
                     <div id="ausgabe_AP_L" class="output-field"></div>
                 </div>
             </div>
@@ -400,12 +400,12 @@
             <div class="line-container" style="justify-content: center;">
 
                 <div class="vertical-item">
-                    <div class="output-label">s / mm</div>
+                    <div class="output-label"><b>s</b>&nbsp;/ mm</div>
                     <div id="ausgabe_AP_Punkt1_s" class="output-field"></div>
                 </div>
                 <div class="vertical-separator"></div>
                 <div class="vertical-item">
-                    <div class="output-label">F / N</div>
+                    <div class="output-label"><b>F</b>&nbsp;/ N</div>
                     <div id="ausgabe_AP_Punkt1_F" class="output-field"></div>
                 </div>
             </div>
@@ -414,7 +414,7 @@
 
                 <div class="line-description">Einfederung:</div>
                 <div class="vertical-item">
-                    <div class="output-label">s / %</div>
+                    <div class="output-label"><b>s</b>&nbsp;/ %</div>
                     <div id="ausgabe_AP_Punkt1_s_relativ" class="output-field"></div>
                 </div>
             </div>
@@ -423,7 +423,7 @@
 
                 <div class="line-description">Bauhöhe:</div>
                 <div class="vertical-item">
-                    <div class="output-label">L / mm</div>
+                    <div class="output-label"><b>L</b>&nbsp;/ mm</div>
                     <div id="ausgabe_AP_Punkt1_L" class="output-field"></div>
                 </div>
             </div>
@@ -443,12 +443,12 @@
             <div class="line-container" style="justify-content: center;">
 
                 <div class="vertical-item">
-                    <div class="output-label">s / mm</div>
+                    <div class="output-label"><b>s</b>&nbsp;/ mm</div>
                     <div id="ausgabe_AP_Punkt2_s" class="output-field"></div>
                 </div>
                 <div class="vertical-separator"></div>
                 <div class="vertical-item">
-                    <div class="output-label">F / N</div>
+                    <div class="output-label"><b>F</b>&nbsp;/ N</div>
                     <div id="ausgabe_AP_Punkt2_F" class="output-field"></div>
                 </div>
             </div>
@@ -457,7 +457,7 @@
 
                 <div class="line-description">Einfederung:</div>
                 <div class="vertical-item">
-                    <div class="output-label">s / %</div>
+                    <div class="output-label"><b>s</b>&nbsp;/ %</div>
                     <div id="ausgabe_AP_Punkt2_s_relativ" class="output-field"></div>
                 </div>
             </div>
@@ -466,7 +466,7 @@
 
                 <div class="line-description">Bauhöhe:</div>
                 <div class="vertical-item">
-                    <div class="output-label">L / mm</div>
+                    <div class="output-label"><b>L</b>&nbsp;/ mm</div>
                     <div id="ausgabe_AP_Punkt2_L" class="output-field"></div>
                 </div>
             </div>
