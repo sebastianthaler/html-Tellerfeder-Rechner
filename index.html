@@ -1,489 +1,481 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!doctype html>
+<html lang="de">
 
-    <!-- Titel wird als Bezeichnung im Tab des Browsers verwendet -->
-
-    <title>Browser Rechner: Tellerfeder</title>
-
-    <!-- Laden von Noto Sans von Google Fonts -->
-
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tellerfeder-Rechner</title>
+    <!-- Bootstrap-Styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <!-- Google-Fonts/Noto Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
-    <!-- Link zu meinem CSS-Dokument -->
-
+    <!-- Mein CSS -->
     <link rel="stylesheet" href="css/style.css">
+  </head>
 
-    <!-- Einbinden der Plot-Bibliothek -->
+  <body>
+    <div class="container py-5">
+        <!-- Container-Eingabe -->
+        <div id="eingabeContainer" class="card shadow-sm">
+            <h1 class="card-header text-center">Eingaben</h1>
+            <!-- Container-Eingabe/Titeleingabe -->
+            <div class="card-body">
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Titel der Berechnung:</div>
+                    <div class="col-md-6">
+                        <input type="text" id="eingabe_Titel" class="form-control" placeholder="Optional">
+                    </div>
+                </div>
+            </div>
+            <!-- Container-Eingabe/Geometrie -->
+            <div class="card-body">
+                <h2>Geometrie Feder</h2>
+                <!-- Container-Eingabe/Geometrie/Radio-Gruppenwahl -->
+                <div class="d-flex gap-5 mt-1 mb-2 align-items-center justify-content-end">
+                    <div class="form-check rounded border">
+                        <input class="form-check-input" type="radio" id="radio12" name="gruppenwahl" checked>
+                        <label class="form-check-label px-1" for="radio12">Gruppe 1&2</label>
+                    </div>
+                    <div class="form-check rounded border">
+                        <input class="form-check-input" type="radio" id="radio3" name="gruppenwahl">
+                        <label class="form-check-label px-1" for="radio3">Gruppe 3</label>
+                    </div>
+                </div>
+                <!-- Container-Eingabe/Geometrie/Außendurchmesser -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Außendurchmesser:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="eingabe_Da" class="col-md-6"><b>D<sub>e</sub></b>&nbsp;/ mm</label>
+                            <div class="col-md-6">
+                                <input type="text" id="eingabe_Da" class="form-control" placeholder="Pflichtfeld">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Eingabe/Geometrie/Innendurchmesser -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Innendurchmesser:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="eingabe_Di" class="col-md-6"><b>D<sub>i</sub></b>&nbsp;/ mm</label>
+                            <div class="col-md-6">
+                                <input type="text" id="eingabe_Di" class="form-control" placeholder="Pflichtfeld">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Eingabe/Geometrie/Dicke -->
+                <div class="row my-1 align-items-center" id="inputGroup_t12">
+                    <div class="col-md-6">Dicke:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="eingabe_t" class="col-md-6"><b>t</b>&nbsp;/ mm</label>
+                            <div class="col-md-6">
+                                <input type="text" id="eingabe_t" class="form-control" placeholder="Pflichtfeld">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Eingabe/Geometrie/Reduzierte-Dicke -->
+                <div class="row my-1 align-items-center" id="inputGroup_t3">
+                    <div class="col-md-6">Reduzierte Dicke:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="eingabe_t_strich" class="col-md-6"><b>t'</b>&nbsp;/ mm</label>
+                            <div class="col-md-6">
+                                <input type="text" id="eingabe_t_strich" class="form-control" placeholder="Pflichtfeld">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Eingabe/Geometrie/K4 -->
+                <div class="row my-1 align-items-center" id="inputGroup_K4">
+                    <div class="col-md-6">Kennlinienparameter:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="eingabe_K4" class="col-md-6"><b>K4 * (h0'/t')</b>&nbsp;/ -</label>
+                            <div class="col-md-6">
+                                <input type="text" id="eingabe_K4" class="form-control" placeholder="wenn t=t'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Eingabe/Geometrie/Unbelastete-Bauhöhe -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Unbelastete Bauhöhe:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="eingabe_L0" class="col-md-6"><b>l<sub>0</sub></b>&nbsp;/ mm</label>
+                            <div class="col-md-6">
+                                <input type="text" id="eingabe_L0" class="form-control" placeholder="Pflichtfeld">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-Eingabe/Stapeldaten -->
+            <div class="card-body">
+                <h2>Stapeldaten</h2>
+                <!-- Container-Eingabe/Stapeldaten/Gleichsinnige-Schichtung -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Gleichsinnig geschichtete Federn:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="eingabe_stapel_n" class="col-md-6"><b>n</b>&nbsp;/ -</label>
+                            <div class="col-md-6">
+                                <input type="text" id="eingabe_stapel_n" class="form-control" placeholder="Optional">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Eingabe/Stapeldaten/Wechelsinnige-Schichtung -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Wechselsinnig geschichtete Federn:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="eingabe_stapel_i" class="col-md-6"><b>i</b>&nbsp;/ -</label>
+                            <div class="col-md-6">
+                                <input type="text" id="eingabe_stapel_i" class="form-control" placeholder="Optional">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-Eingabe/Arbeitspunkt -->
+            <div class="card-body">
+                <h2>Arbeitspunkt</h2>
+                <!-- Container-Eingabe/Arbeitspunkt/Radio-Definitionswahl -->
+                <div class="d-flex gap-5 mt-1 mb-2 align-items-center justify-content-end">
+                    <div class="form-check rounded border">
+                        <input class="form-check-input" type="radio" id="radioAuswahlFederweg" name="arbeitspunktdefinition" checked>
+                        <label class="form-check-label px-1" for="radioAuswahlFederweg">Definition über Federweg</label>
+                    </div>
+                    <div class="form-check rounded border">
+                        <input class="form-check-input" type="radio" id="radioAuswahlFederkraft" name="arbeitspunktdefinition">
+                        <label class="form-check-label px-1" for="radioAuswahlFederkraft">Definition über Federkraft</label>
+                    </div>
+                </div>
+                <!-- Container-Eingabe/Arbeitspunkt/Arbeitspunkt -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Arbeitspunkt:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label id="einheit_label_AP" for="eingabe_AP" class="col-md-6">siehe Java-Script</label>
+                            <div class="col-md-6">
+                                <input type="text" id="eingabe_AP" class="form-control" placeholder="Optional">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Eingabe/Arbeitspunkt/Abweichung-1 -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Abweichung 1:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <select id="einheit_AP_Abweichung_1" class="form-select">
+                                    <option value="mm">mm</option>
+                                    <option value="percent">%</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="eingabe_AP_Abweichung_1" class="form-control" placeholder="Optional">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Eingabe/Arbeitspunkt/Abweichung-2 -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Abweichung 2:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <select id="einheit_AP_Abweichung_2" class="form-select">
+                                    <option value="mm">mm</option>
+                                    <option value="percent">%</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="eingabe_AP_Abweichung_2" class="form-control" placeholder="Optional">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-Eingabe/Werkstoffdaten -->
+            <div class="card-body">
+                <h2>Benutzerdefinierte Werkstoffdaten</h2>
+                <!-- Container-Eingabe/Werkstoffdaten/E-Modul -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">E-Modul des Werkstoffs:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="eingabe_E" class="col-md-6"><b>E</b>&nbsp;/ MPa</label>
+                            <div class="col-md-6">
+                                <input type="text" id="eingabe_E" class="form-control" placeholder="Optional">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Eingabe/Werkstoffdaten/Querkontraktionszahl -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Poisson-Zahl (Querkontraktionszahl):</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="eingabe_mu" class="col-md-6"><b>&mu;</b>&nbsp;/ -</label>
+                            <div class="col-md-6">
+                                <input type="text" id="eingabe_mu" class="form-control" placeholder="Optional">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-Eingabe/Button-Ergebnisse-Anzeigen -->
+            <div class="card-body">
+                <button id="berechneButton" class="btn btn-primary w-100 rounded my-2">Ergebnisse anzeigen</button>
+            </div>
+        </div>
+        <!-- Container-Ausgabe -->
+        <div id="ergebnisContainer" class="card shadow-sm" style="display: none;">
+            <h1 id="ergebnisContainer_Titel" class="card-header text-center">Ergebnisse</h1>
+            <!-- Container-Ausgabe/Stapeldaten -->
+            <div class="card-body">
+                <h2>Stapeldaten</h2>
+                <!-- Container-Ausgabe/Stapeldaten/Unbelastete-Höhe -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Unbelastete Höhe:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="ausgabe_stapel_L0" class="col-md-6"><b>L<sub>0</sub></b>&nbsp;/ mm</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="Platzhalter" id="ausgabe_stapel_L0" disabled readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Ausgabe/Stapeldaten/Maximaler-Federweg -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Maximaler Federweg:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="ausgabe_stapel_s_max" class="col-md-6"><b>h<sub>0</sub></b>&nbsp;/ mm</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="Platzhalter" id="ausgabe_stapel_s_max" disabled readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Ausgabe/Stapeldaten/Prüfpunkt-Federweg -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Prüfpunkt - Weg:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="ausgabe_stapel_s_075" class="col-md-6"><b>s</b>&nbsp;/ mm</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="Platzhalter" id="ausgabe_stapel_s_075" disabled readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Ausgabe/Stapeldaten/Prüfpunkt-Federkraft -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Prüfpunkt - Kraft:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="ausgabe_stapel_F_075" class="col-md-6"><b>F</b>&nbsp;/ N</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="Platzhalter" id="ausgabe_stapel_F_075" disabled readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-Ausgabe/Kennlinie -->
+            <div class="card-body">
+                <h2>Kennlinie</h2>
+                <canvas id="plotCanvas"></canvas>
+            </div>
+            <!-- Container-Ausgabe/Arbeitspunkt -->
+            <div id="ausgabeContainer_AP" class="card-body">
+                <h2>Arbeitspunkt</h2>
+                <!-- Container-Ausgabe/Arbeitspunkt/Federweg -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Federweg:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="ausgabe_AP_s" class="col-md-6"><b>s</b>&nbsp;/ mm</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="Platzhalter" id="ausgabe_AP_s" disabled readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Ausgabe/Arbeitspunkt/Federkraft -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Federkraft:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="ausgabe_AP_F" class="col-md-6"><b>F</b>&nbsp;/ N</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="Platzhalter" id="ausgabe_AP_F" disabled readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Ausgabe/Arbeitspunkt/Einfederung -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Einfederung:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="ausgabe_AP_s_relativ" class="col-md-6"><b>s</b>&nbsp;/ %</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="Platzhalter" id="ausgabe_AP_s_relativ" disabled readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Ausgabe/Arbeitspunkt/Stapelhöhe -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Stapelhöhe:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="ausgabe_AP_L" class="col-md-6"><b>L</b>&nbsp;/ mm</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="Platzhalter" id="ausgabe_AP_L" disabled readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-Ausgabe/Abweichung-1 -->
+            <div id="ausgabeContainer_AP_Punkt1" class="card-body">
+                <h2>Abweichung 1</h2>
+                <!-- Container-Ausgabe/Abweichung-1/Federweg -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Federweg:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="ausgabe_AP_Punkt1_s" class="col-md-6"><b>s</b>&nbsp;/ mm</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="Platzhalter" id="ausgabe_AP_Punkt1_s" disabled readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Ausgabe/Abweichung-1/Federkraft -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Federkraft:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="ausgabe_AP_Punkt1_F" class="col-md-6"><b>F</b>&nbsp;/ N</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="Platzhalter" id="ausgabe_AP_Punkt1_F" disabled readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Ausgabe/Abweichung-1/Einfederung -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Einfederung:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="ausgabe_AP_Punkt1_s_relativ" class="col-md-6"><b>s</b>&nbsp;/ %</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="Platzhalter" id="ausgabe_AP_Punkt1_s_relativ" disabled readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Ausgabe/Abweichung-1/Stapelhöhe -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Stapelhöhe:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="ausgabe_AP_Punkt1_L" class="col-md-6"><b>L</b>&nbsp;/ mm</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="Platzhalter" id="ausgabe_AP_Punkt1_L" disabled readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-Ausgabe/Abweichung-2 -->
+            <div id="ausgabeContainer_AP_Punkt2" class="card-body">
+                <h2>Abweichung 2</h2>
+                <!-- Container-Ausgabe/Abweichung-2/Federweg -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Federweg:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="ausgabe_AP_Punkt2_s" class="col-md-6"><b>s</b>&nbsp;/ mm</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="Platzhalter" id="ausgabe_AP_Punkt2_s" disabled readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Ausgabe/Abweichung-2/Federkraft -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Federkraft:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="ausgabe_AP_Punkt2_F" class="col-md-6"><b>F</b>&nbsp;/ N</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="Platzhalter" id="ausgabe_AP_Punkt2_F" disabled readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Ausgabe/Abweichung-2/Einfederung -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Einfederung:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="ausgabe_AP_Punkt2_s_relativ" class="col-md-6"><b>s</b>&nbsp;/ %</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="Platzhalter" id="ausgabe_AP_Punkt2_s_relativ" disabled readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-Ausgabe/Abweichung-1/Stapelhöhe -->
+                <div class="row my-1 align-items-center">
+                    <div class="col-md-6">Stapelhöhe:</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="ausgabe_AP_Punkt2_L" class="col-md-6"><b>L</b>&nbsp;/ mm</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="Platzhalter" id="ausgabe_AP_Punkt2_L" disabled readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row my-2">
+                    <!-- Container-Eingabe/Button-Zurück-zur-Eingabe -->
+                    <div class="col">
+                        <button id="zurückButton" class="btn btn-primary w-100 rounded">Zurück zur Eingabe</button>
+                    </div>
+                    <!-- Container-Eingabe/Button-Neue-Berechnung -->
+                    <div class="col">
+                        <button id="neueBerechnungButton" class="btn btn-primary w-100 rounded">Neue Berechnung</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+
+
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
-
-</head>
-
-<body> 
-    
-    <!-- Tatsächliche Seitenelemente -->
-
-    <!-- =========================================================================================== -->
-    <!-- Eingabe-Container -->
-    <!-- =========================================================================================== -->
-
-    <div id="eingabeContainer" class="container-standard">
-
-        <h1>Eingaben</h1>
-
-        <!-- ------------------------------------------------------------------------------------------- -->
-        <!-- TITTEL-EINGABE -->
-        <!-- ------------------------------------------------------------------------------------------- -->
-
-        <div class="line-container">
-
-            <div class="line-description">Titel der Berechnung:</div>
-
-            <input type="text" id="eingabe_Titel" class="input-field" style="width:300px;" placeholder="Optional">
-        </div>
-
-        <!-- ------------------------------------------------------------------------------------------- -->
-        <!-- GEOMETRIE -->
-        <!-- ------------------------------------------------------------------------------------------- -->
-
-        <div class="line-with-text-left"><h2>Geometrie</h2></div>
-
-        <!-- -------------------- -->
-        <div class="line-container" style="justify-content: center;">
-
-            <div class="vertical-item">
-                
-                <div class="radio-group-container">
-
-                    <input type="radio" id="radio12" name="gruppenwahl" checked>
-                    <label for="radio12">Gruppe 1&2</label>
-
-                    <input type="radio" id="radio3" name="gruppenwahl">
-                    <label for="radio3">Gruppe 3</label>
-                </div>
-            </div>
-        </div>
-
-        <!-- -------------------- -->
-        <div class="line-container">
-
-            <div class="line-description">Außendurchmesser</div>
-
-            <div class="vertical-item">
-
-                <div class="input-label"><b>D<sub>e</sub></b>&nbsp;/ mm</div>
-
-                <input type="text" id="eingabe_Da" class="input-field" placeholder="Pflichtfeld">
-            </div>
-        </div>
-
-        <!-- -------------------- -->
-        <div class="line-container">
-
-            <div class="line-description">Innendurchmesser</div>
-
-            <div class="vertical-item">
-
-                <div class="input-label"><b>D<sub>i</sub></b>&nbsp;/ mm</div>
-
-                <input type="text" id="eingabe_Di" class="input-field" placeholder="Pflichtfeld">
-            </div>
-        </div>
-
-        <!-- -------------------- -->
-        <div class="line-container" id="inputGroup_t12">
-
-            <div class="line-description">Dicke</div>
-
-            <div class="vertical-item">
-
-                <div class="input-label"><b>t</b>&nbsp;/ mm</div>
-
-                <input type="text" id="eingabe_t" class="input-field" placeholder="Pflichtfeld">
-            </div>
-        </div>
-
-        <!-- -------------------- -->
-        <div class="line-container" id="inputGroup_t3">
-
-            <div class="line-description">Reduzierte Dicke</div>
-
-            <div class="vertical-item">
-
-                <div class="input-label"><b>t'</b>&nbsp;/ mm</div>
-
-                <input type="text" id="eingabe_t_strich" class="input-field" placeholder="Pflichtfeld">
-            </div>
-        </div>
-
-        <!-- -------------------- -->
-        <div class="line-container" id="inputGroup_K4">
-
-            <div class="line-description">Kennlinienparameter</div>
-
-            <div class="vertical-item">
-
-                <div class="input-label"><b>K4 * (h0'/t')</b>&nbsp;/ -</div>
-
-                <input type="text" id="eingabe_K4" class="input-field" placeholder="wenn t=t'">
-            </div>
-        </div>
-
-        <!-- -------------------- -->
-        <div class="line-container">
-
-            <div class="line-description">Unbelastete Bauhöhe</div>
-
-            <div class="vertical-item">
-
-                <div class="input-label"><b>l<sub>0</sub></b>&nbsp;/ mm</div>
-
-                <input type="text" id="eingabe_L0" class="input-field" placeholder="Pflichtfeld">
-            </div>
-        </div>
-
-        <!-- ------------------------------------------------------------------------------------------- -->
-        <!-- STAPELDATEN -->
-        <!-- ------------------------------------------------------------------------------------------- -->
-
-        <div class="line-with-text-left"><h2>Stapeldaten</h2></div>
-
-        <!-- -------------------- -->
-        <div class="line-container">
-
-            <div class="line-description">Gleichsinnig geschichtete Federn</div>
-
-            <div class="vertical-item">
-
-                <div class="input-label"><b>n</b>&nbsp;/ -</div>
-
-                <input type="text" id="eingabe_stapel_n" class="input-field" placeholder="Optional">
-            </div>
-        </div>
-
-        <!-- -------------------- -->
-        <div class="line-container">
-
-            <div class="line-description">Wechselsinnig geschichtete Federn</div>
-
-            <div class="vertical-item">
-
-                <div class="input-label"><b>i</b>&nbsp;/ -</div>
-
-                <input type="text" id="eingabe_stapel_i" class="input-field" placeholder="Optional">
-            </div>
-        </div>
-
-        <!-- ------------------------------------------------------------------------------------------- -->
-        <!-- ARBEITSPUNKTE -->
-        <!-- ------------------------------------------------------------------------------------------- -->
-
-        <div class="line-with-text-left"><h2>Arbeitspunkt</h2></div>
-
-        <!-- -------------------- -->
-        <div class="line-container" style="justify-content: center;"> 
-
-            <div class="vertical-item">
-
-                <div class="radio-group-container">
-
-                    <input type="radio" id="radioAuswahlFederweg" name="arbeitspunktdefinition" checked>
-                    <label for="radioAuswahlFederweg">Definition über Federweg</label>
-                    <input type="radio" id="radioAuswahlFederkraft" name="arbeitspunktdefinition">
-                    <label for="radioAuswahlFederkraft">Definition über Federkraft</label>
-                </div>
-            </div>
-        </div>
-
-        <!-- -------------------- -->
-        <div class="line-container">
-
-            <div class="line-description">Arbeitspunkt</div>
-
-            <div class="vertical-item">
-
-                <div class="input-label" id="einheit_label_AP">siehe Java-Script</div>
-
-                <input type="text" id="eingabe_AP" class="input-field" placeholder="Optional">
-            </div>
-        </div>
-
-        <!-- -------------------- -->
-        <div class="line-container">
-
-            <div class="line-description">Abweichung 1</div>
-
-            <div class="vertical-item">
-
-                <select id="einheit_AP_Abweichung_1" class="input-dropdown">
-                    <option value="mm">mm</option>
-                    <option value="percent">%</option>
-                </select>
-
-                <input type="text" id="eingabe_AP_Abweichung_1" class="input-field" placeholder="Optional">
-            </div>
-        </div>
-
-        <div class="line-container">
-
-            <div class="line-description">Abweichung 2</div>
-
-            <div class="vertical-item">
-
-                <select id="einheit_AP_Abweichung_2" class="input-dropdown">
-                    <option value="mm">mm</option>
-                    <option value="percent">%</option>
-                </select>
-            </div>
-
-            <input type="text" id="eingabe_AP_Abweichung_2" class="input-field" placeholder="Optional">
-        </div>
-
-        <!-- ------------------------------------------------------------------------------------------- -->
-        <!-- WERKSTOFFDATEN -->
-        <!-- ------------------------------------------------------------------------------------------- -->
-
-        <div class="line-with-text-left"><h2>Benutzerdefinierte Werkstoffdaten</h2></div>
-
-        <!-- -------------------- -->
-        <div class="line-container">
-
-            <div class="line-description">E-Modul des Werkstoffs:</div>
-
-            <div class="vertical-item">
-
-                <div class="input-label"><b>E</b>&nbsp;/ MPa</div>
-
-                <input type="text" id="eingabe_E" class="input-field" placeholder="Optional">
-            </div>
-        </div>
-
-        <!-- -------------------- -->
-        <div class="line-container">
-
-            <div class="line-description">Poisson-Zahl (Querkontraktionszahl):</div>
-            <div class="vertical-item">
-
-                <div class="input-label"><b>&mu;</b>&nbsp;/ -</div>
-
-                <input type="text" id="eingabe_mu" class="input-field" placeholder="Optional">
-            </div>
-        </div>
-
-        <hr>
-
-        <button id="berechneButton">Ergebnisse anzeigen</button>
-    </div>
-
-    <!-- =========================================================================================== -->
-    <!-- Ergebnis-Container -->
-    <!-- =========================================================================================== -->
-
-    <div id="ergebnisContainer" class="container-standard" style="display: none;">
-
-        <h1 id="ergebnisContainer_Titel">Ergebnisse</h1>
-
-        <!-- ------------------------------------------------------------------------------------------- -->
-        <!-- AUSGABE-STAPELDATEN -->
-        <!-- ------------------------------------------------------------------------------------------- -->
-
-        <div class="line-with-text-left"><h2>Stapeldaten</h2></div>
-    
-        <!-- -------------------- -->
-        <div class="line-container">
-            
-            <div class="line-description">Bauhöhe des Stapels:</div>
-
-            <div class="vertical-item">
-                <div class="output-label"><b>L<sub>0</sub></b>&nbsp;/ mm</div>
-                <div id="ausgabe_stapel_L0" class="output-field"></div>
-            </div>
-        </div>
-
-        <!-- -------------------- -->
-        <div class="line-container">
-
-            <div class="line-description">Maximaler Federweg:</div>
-
-            <div class="vertical-item">
-                <div class="output-label"><b>s</b>&nbsp;/ mm</div>
-                <div id="ausgabe_stapel_s_max" class="output-field"></div>
-            </div>
-        </div>
-
-        <div class="line-with-text-left"><h2>Prüfpunkt</h2></div>
-
-        <div class="line-container">
-
-            <div class="vertical-item" style="margin-left: auto;">
-                <div class="output-label"><b>s</b>&nbsp;/ mm</div>
-                <div id="ausgabe_stapel_s_075" class="output-field"></div>
-            </div>
-
-            <div class="vertical-separator"></div>
-
-            <div class="vertical-item" style="margin-right: auto;">
-                <div class="output-label"><b>F</b>&nbsp;/ N</div>
-                <div id="ausgabe_stapel_F_075" class="output-field"></div>
-            </div>
-        </div>
-
-
-        <!-- ------------------------------------------------------------------------------------------- -->
-        <!-- KENNLINIE -->
-        <!-- ------------------------------------------------------------------------------------------- -->
-
-        <div class="line-with-text-left"><h2>Kennlinie</h2></div>
-        <canvas id="plotCanvas"></canvas>
-
-        <!-- ------------------------------------------------------------------------------------------- -->
-        <!-- AUSGABE-ARBEITSPUNKTE -->
-        <!-- ------------------------------------------------------------------------------------------- -->
-
-        <!-- Arbeitspunkt -->
-
-        <div id="ausgabeContainer_AP" class="output-group-container">
-
-            <hr>
-
-            <div class="line-container" style="margin-bottom: 25px;">
-
-                <div class="line-description bold">Arbeitspunkt</div>
-            </div>
-
-            <div class="line-container" style="justify-content: center;">
-
-                <div class="vertical-item">
-                    <div class="output-label"><b>s</b>&nbsp;/ mm</div>
-                    <div id="ausgabe_AP_s" class="output-field"></div>
-                </div>
-                <div class="vertical-separator"></div>
-                <div class="vertical-item">
-                    <div class="output-label"><b>F</b>&nbsp;/ N</div>
-                    <div id="ausgabe_AP_F" class="output-field"></div>
-                </div>
-            </div>
-
-            <div class="line-container">
-
-                <div class="line-description">Einfederung:</div>
-                <div class="vertical-item">
-                    <div class="output-label"><b>s</b>&nbsp;/ %</div>
-                    <div id="ausgabe_AP_s_relativ" class="output-field"></div>
-                </div>
-            </div>
-
-            <div class="line-container">
-
-                <div class="line-description">Bauhöhe:</div>
-                <div class="vertical-item">
-                    <div class="output-label"><b>L</b>&nbsp;/ mm</div>
-                    <div id="ausgabe_AP_L" class="output-field"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Abweichung 1 -->
-
-        <div id="ausgabeContainer_AP_Punkt1" class="output-group-container">
-
-            <hr>
-
-            <div class="line-container" style="margin-bottom: 25px;">
-
-                <div class="line-description bold">Abweichung 1</div>
-            </div>
-
-            <div class="line-container" style="justify-content: center;">
-
-                <div class="vertical-item">
-                    <div class="output-label"><b>s</b>&nbsp;/ mm</div>
-                    <div id="ausgabe_AP_Punkt1_s" class="output-field"></div>
-                </div>
-                <div class="vertical-separator"></div>
-                <div class="vertical-item">
-                    <div class="output-label"><b>F</b>&nbsp;/ N</div>
-                    <div id="ausgabe_AP_Punkt1_F" class="output-field"></div>
-                </div>
-            </div>
-
-            <div class="line-container">
-
-                <div class="line-description">Einfederung:</div>
-                <div class="vertical-item">
-                    <div class="output-label"><b>s</b>&nbsp;/ %</div>
-                    <div id="ausgabe_AP_Punkt1_s_relativ" class="output-field"></div>
-                </div>
-            </div>
-
-            <div class="line-container">
-
-                <div class="line-description">Bauhöhe:</div>
-                <div class="vertical-item">
-                    <div class="output-label"><b>L</b>&nbsp;/ mm</div>
-                    <div id="ausgabe_AP_Punkt1_L" class="output-field"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Abweichung 2 -->
-
-        <div id="ausgabeContainer_AP_Punkt2" class="output-group-container">
-
-            <hr>
-
-            <div class="line-container" style="margin-bottom: 25px;">
-
-                <div class="line-description bold">Abweichung 2</div>
-            </div>
-
-            <div class="line-container" style="justify-content: center;">
-
-                <div class="vertical-item">
-                    <div class="output-label"><b>s</b>&nbsp;/ mm</div>
-                    <div id="ausgabe_AP_Punkt2_s" class="output-field"></div>
-                </div>
-                <div class="vertical-separator"></div>
-                <div class="vertical-item">
-                    <div class="output-label"><b>F</b>&nbsp;/ N</div>
-                    <div id="ausgabe_AP_Punkt2_F" class="output-field"></div>
-                </div>
-            </div>
-
-            <div class="line-container">
-
-                <div class="line-description">Einfederung:</div>
-                <div class="vertical-item">
-                    <div class="output-label"><b>s</b>&nbsp;/ %</div>
-                    <div id="ausgabe_AP_Punkt2_s_relativ" class="output-field"></div>
-                </div>
-            </div>
-
-            <div class="line-container">
-
-                <div class="line-description">Bauhöhe:</div>
-                <div class="vertical-item">
-                    <div class="output-label"><b>L</b>&nbsp;/ mm</div>
-                    <div id="ausgabe_AP_Punkt2_L" class="output-field"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ------------------------------------------------------------------------------------------- -->
-        <!-- BUTTONS UNTEN -->
-        <!-- ------------------------------------------------------------------------------------------- -->
-      
-        <hr>
-        <button id="zurückButton">Zurück zur Eingabe</button>
-        <button id="neueBerechnungButton">Neue Berechnung</button>
-    </div>
-
-    <!-- Link zu meinem Java-Script-Dokument -->
-
+    <!-- Bootstrap.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <!-- Mein JavaScript -->
     <script src="js/main.js" defer></script>
-
-</body>
+  </body>
 </html>

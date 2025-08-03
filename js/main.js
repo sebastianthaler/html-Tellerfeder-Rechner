@@ -695,13 +695,13 @@ berechneButton.addEventListener("click", function() {
     //=========//
 
     // Test
-    //ausgabe_K4.textContent = K4.toFixed(4);
+    //ausgabe_K4.value = K4.toFixed(4);
 
     // Stapeldaten.
-    ausgabe_stapel_L0.textContent = stapel_L0.toFixed(2);
-    ausgabe_stapel_s_max.textContent = stapel_h0.toFixed(2);
-    ausgabe_stapel_F_075.textContent = stapel_F_075.toFixed(0);
-    ausgabe_stapel_s_075.textContent = stapel_s_075.toFixed(2);
+    ausgabe_stapel_L0.value = stapel_L0.toFixed(2);
+    ausgabe_stapel_s_max.value = stapel_h0.toFixed(2);
+    ausgabe_stapel_F_075.value = stapel_F_075.toFixed(0);
+    ausgabe_stapel_s_075.value = stapel_s_075.toFixed(2);
 
     // Arbeitspunkte:
     // Standard: Sichtbarkeit für alle aus.
@@ -715,10 +715,10 @@ berechneButton.addEventListener("click", function() {
 
         const correctElement = AP_Array_output[0];
 
-        ausgabe_AP_s.textContent = correctElement.s.toFixed(2);
-        ausgabe_AP_F.textContent = correctElement.F.toFixed(0);
-        ausgabe_AP_s_relativ.textContent = correctElement.s_relativ.toFixed(0);
-        ausgabe_AP_L.textContent = correctElement.L.toFixed(2);
+        ausgabe_AP_s.value = correctElement.s.toFixed(2);
+        ausgabe_AP_F.value = correctElement.F.toFixed(0);
+        ausgabe_AP_s_relativ.value = correctElement.s_relativ.toFixed(0);
+        ausgabe_AP_L.value = correctElement.L.toFixed(2);
 
         ausgabeContainer_AP.style.display = 'block';
     }
@@ -728,10 +728,10 @@ berechneButton.addEventListener("click", function() {
 
         const correctElement = AP_Array_output[1];
 
-        ausgabe_AP_Punkt1_s.textContent = correctElement.s.toFixed(2);
-        ausgabe_AP_Punkt1_F.textContent = correctElement.F.toFixed(0);
-        ausgabe_AP_Punkt1_s_relativ.textContent = correctElement.s_relativ.toFixed(0);
-        ausgabe_AP_Punkt1_L.textContent = correctElement.L.toFixed(2);
+        ausgabe_AP_Punkt1_s.value = correctElement.s.toFixed(2);
+        ausgabe_AP_Punkt1_F.value = correctElement.F.toFixed(0);
+        ausgabe_AP_Punkt1_s_relativ.value = correctElement.s_relativ.toFixed(0);
+        ausgabe_AP_Punkt1_L.value = correctElement.L.toFixed(2);
 
         ausgabeContainer_AP_Punkt1.style.display = 'block';
     }
@@ -741,10 +741,10 @@ berechneButton.addEventListener("click", function() {
 
         const correctElement = AP_Array_output[2];
 
-        ausgabe_AP_Punkt2_s.textContent = correctElement.s.toFixed(2);
-        ausgabe_AP_Punkt2_F.textContent = correctElement.F.toFixed(0);
-        ausgabe_AP_Punkt2_s_relativ.textContent = correctElement.s_relativ.toFixed(0);
-        ausgabe_AP_Punkt2_L.textContent = correctElement.L.toFixed(2);
+        ausgabe_AP_Punkt2_s.value = correctElement.s.toFixed(2);
+        ausgabe_AP_Punkt2_F.value = correctElement.F.toFixed(0);
+        ausgabe_AP_Punkt2_s_relativ.value = correctElement.s_relativ.toFixed(0);
+        ausgabe_AP_Punkt2_L.value = correctElement.L.toFixed(2);
 
         ausgabeContainer_AP_Punkt2.style.display = 'block';
     }
