@@ -281,7 +281,6 @@ function calculate_F3(E, mu, t, K1, De, K4, h0, s) {
     
     const term1 = (4 * E) / (1 - mu * mu);
     const term2 = Math.pow(t, 4) / (K1 * De * De);
-    const term3 = Math.pow(K4, 2);
 
     const klammer_term2 = (h0 / t) - (s / t);
     const klammer_term3 = (h0 / t) - (s / (2 * t));
@@ -290,6 +289,18 @@ function calculate_F3(E, mu, t, K1, De, K4, h0, s) {
     return term1 * term2 * Math.pow(K4, 2) * (s / t) * klammer_inhalt;
 }
 
+// Kennlinie: K4 nach cb-Werksnorm
+function calculate_K4Squared(l0, t) {
+
+    const term_a = 20 * Math.pow((l0 - t), 2);
+    const term_b = 128 * Math.pow(t, 2);
+    const term_c = -1.15 * (term_a + term_b);
+    
+    const zaehler = -term_b + Math.sqrt(Math.pow(term_b, 2) - 4 * term_a * term_c);
+    const nenner = 2 * term_a;
+
+    return zaehler / nenner;
+}
 
 
 //--------------------------------------------------------------------------\\
