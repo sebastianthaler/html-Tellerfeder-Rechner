@@ -36,19 +36,21 @@
                 <div class="d-flex gap-5 mt-1 mb-2 align-items-center justify-content-end">
                     <div class="form-check rounded border">
                         <input class="form-check-input" type="radio" id="radio_12_DIN" name="gruppenwahl" checked>
-                        <label class="form-check-label px-1" for="radio_12_DIN">Gruppe 1&2</label>
+                        <label class="form-check-label px-1" for="radio_12_DIN">Gruppe 1 & 2 nach DIN-Norm</label>
                     </div>
                     <div class="form-check rounded border">
                         <input class="form-check-input" type="radio" id="radio_3_DIN" name="gruppenwahl">
-                        <label class="form-check-label px-1" for="radio_3_DIN">Gruppe 3</label>
+                        <label class="form-check-label px-1" for="radio_3_DIN">Gruppe 3 nach DIN-Norm</label>
                     </div>
+                </div>
+                <div class="d-flex gap-5 mt-1 mb-2 align-items-center justify-content-end">
                     <div class="form-check rounded border">
                         <input class="form-check-input" type="radio" id="radio_3_CB" name="gruppenwahl">
-                        <label class="form-check-label px-1" for="radio_3_CB">Gruppe 3 cb</label>
+                        <label class="form-check-label px-1" for="radio_3_CB">Gruppe 3 nach CB-Werksnorm</label>
                     </div>
                     <div class="form-check rounded border">
                         <input class="form-check-input" type="radio" id="radio_3_custom" name="gruppenwahl">
-                        <label class="form-check-label px-1" for="radio_3_custom">Gruppe 3 custom</label>
+                        <label class="form-check-label px-1" for="radio_3_custom">Gruppe 3 mit Kennlinienparameter</label>
                     </div>
                 </div>
                 <!-- Container-Eingabe/Geometrie/Außendurchmesser -->
@@ -106,7 +108,7 @@
                         <div class="row">
                             <label for="eingabe_K4" class="col-md-6"><b>K4 * (h0'/t')</b>&nbsp;/ -</label>
                             <div class="col-md-6">
-                                <input type="text" id="eingabe_K4" class="form-control" placeholder="wenn t=t'">
+                                <input type="text" id="eingabe_K4" class="form-control" placeholder="Pflichtfeld">
                             </div>
                         </div>
                     </div>
@@ -124,10 +126,10 @@
                     </div>
                 </div>
             </div>
-            <!-- Container-Eingabe/Stapeldaten -->
+            <!-- Container-Eingabe/Säulendaten -->
             <div class="card-body">
-                <h2>Stapeldaten</h2>
-                <!-- Container-Eingabe/Stapeldaten/Gleichsinnige-Schichtung -->
+                <h2>Säulendaten</h2>
+                <!-- Container-Eingabe/Säulendaten/Gleichsinnige-Schichtung -->
                 <div class="row my-1 align-items-center">
                     <div class="col-md-6">Gleichsinnig geschichtete Federn:</div>
                     <div class="col-md-6">
@@ -139,7 +141,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Container-Eingabe/Stapeldaten/Wechelsinnige-Schichtung -->
+                <!-- Container-Eingabe/Säulendaten/Wechelsinnige-Schichtung -->
                 <div class="row my-1 align-items-center">
                     <div class="col-md-6">Wechselsinnig geschichtete Federn:</div>
                     <div class="col-md-6">
@@ -249,10 +251,10 @@
         <!-- Container-Ausgabe -->
         <div id="ergebnisContainer" class="card shadow-sm" style="display: none;">
             <h1 id="ergebnisContainer_Titel" class="card-header text-center">Ergebnisse</h1>
-            <!-- Container-Ausgabe/Stapeldaten -->
+            <!-- Container-Ausgabe/Säulendaten -->
             <div class="card-body">
-                <h2>Stapeldaten</h2>
-                <!-- Container-Ausgabe/Stapeldaten/Unbelastete-Höhe -->
+                <h2>Säulendaten</h2>
+                <!-- Container-Ausgabe/Säulendaten/Unbelastete-Höhe -->
                 <div class="row my-1 align-items-center">
                     <div class="col-md-6">Unbelastete Höhe:</div>
                     <div class="col-md-6">
@@ -264,7 +266,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Container-Ausgabe/Stapeldaten/Maximaler-Federweg -->
+                <!-- Container-Ausgabe/Säulendaten/Maximaler-Federweg -->
                 <div class="row my-1 align-items-center">
                     <div class="col-md-6">Maximaler Federweg:</div>
                     <div class="col-md-6">
@@ -276,7 +278,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Container-Ausgabe/Stapeldaten/Prüfpunkt-Federweg -->
+                <!-- Container-Ausgabe/Säulendaten/Prüfpunkt-Federweg -->
                 <div class="row my-1 align-items-center">
                     <div class="col-md-6">Prüfpunkt - Weg:</div>
                     <div class="col-md-6">
@@ -288,7 +290,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Container-Ausgabe/Stapeldaten/Prüfpunkt-Federkraft -->
+                <!-- Container-Ausgabe/Säulendaten/Prüfpunkt-Federkraft -->
                 <div class="row my-1 align-items-center">
                     <div class="col-md-6">Prüfpunkt - Kraft:</div>
                     <div class="col-md-6">
@@ -345,9 +347,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- Container-Ausgabe/Arbeitspunkt/Stapelhöhe -->
+                <!-- Container-Ausgabe/Arbeitspunkt/Säulenhöhe -->
                 <div class="row my-1 align-items-center">
-                    <div class="col-md-6">Stapelhöhe:</div>
+                    <div class="col-md-6">Säulenhöhe:</div>
                     <div class="col-md-6">
                         <div class="row">
                             <label for="ausgabe_AP_L" class="col-md-6"><b>L</b>&nbsp;/ mm</label>
@@ -397,9 +399,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- Container-Ausgabe/Abweichung-1/Stapelhöhe -->
+                <!-- Container-Ausgabe/Abweichung-1/Säulenhöhe -->
                 <div class="row my-1 align-items-center">
-                    <div class="col-md-6">Stapelhöhe:</div>
+                    <div class="col-md-6">Säulenhöhe:</div>
                     <div class="col-md-6">
                         <div class="row">
                             <label for="ausgabe_AP_Punkt1_L" class="col-md-6"><b>L</b>&nbsp;/ mm</label>
@@ -449,9 +451,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- Container-Ausgabe/Abweichung-1/Stapelhöhe -->
+                <!-- Container-Ausgabe/Abweichung-1/Säulenhöhe -->
                 <div class="row my-1 align-items-center">
-                    <div class="col-md-6">Stapelhöhe:</div>
+                    <div class="col-md-6">Säulenhöhe:</div>
                     <div class="col-md-6">
                         <div class="row">
                             <label for="ausgabe_AP_Punkt2_L" class="col-md-6"><b>L</b>&nbsp;/ mm</label>

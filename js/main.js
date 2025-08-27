@@ -344,8 +344,8 @@ berechneButton.addEventListener("click", function() {
     //===============================//
 
     // Eingaben holen.
-    let custom_E = validateAndParseInputOptional(eingabe_E, 'Werkstoffdaten --> E');
-    let custom_mu = validateAndParseInputOptional(eingabe_mu, 'Werkstoffdaten --> mu');
+    let custom_E = validateAndParseInputOptional(eingabe_E, 'E');
+    let custom_mu = validateAndParseInputOptional(eingabe_mu, 'mu');
     let custom_material_isValid = true;
 
     // E-Modul einbauen wenn korrekte Eingabe erfolgt ist.
@@ -393,10 +393,10 @@ berechneButton.addEventListener("click", function() {
     // Prüfvariable in Kennlinienberechnung zunächst falsch!
     let kennlinie_isValid = false;
     // Abrufen und Validieren der Eingaben.
-    const da = validateAndParseInput(eingabe_Da, 'Geometrie --> De');
-    const di = validateAndParseInput(eingabe_Di, 'Geometrie --> Di');
-    const l0 = validateAndParseInput(eingabe_L0, 'Geometrie --> L0');
-    const t = validateAndParseInput(eingabe_t, 'Geometrie --> t');
+    const da = validateAndParseInput(eingabe_Da, 'De');
+    const di = validateAndParseInput(eingabe_Di, 'Di');
+    const l0 = validateAndParseInput(eingabe_L0, 'l0');
+    const t = validateAndParseInput(eingabe_t, 't');
 
     // Array für die Kennlinien-Punkte.
     const federkennlinieData = [];
@@ -444,7 +444,7 @@ berechneButton.addEventListener("click", function() {
     else if (radio_3_DIN.checked) { 
         
         // Abrufen und Prüfen von t_strich (=t').
-        let t_strich = validateAndParseInput(eingabe_t_strich, "Geometrie --> t'");
+        let t_strich = validateAndParseInput(eingabe_t_strich, "t'");
 
         // Prüfung 2: sind alle Eingaben Zahlen?                
         if (!isNaN(da) && !isNaN(di) && !isNaN(t) && !isNaN(t_strich) && !isNaN(l0)) {
@@ -538,7 +538,7 @@ berechneButton.addEventListener("click", function() {
 
         // Abrufen und Prüfen von Kennlinienparameter und Setzen von t_strich zu t.
         let t_strich = t;
-        let K4_parameter = validateAndParseInput(eingabe_K4, "Geometrie --> Kennlinienparameter");
+        let K4_parameter = validateAndParseInput(eingabe_K4, "Kennlinienparameter");
 
         // Prüfung 2: sind alle Eingaben Zahlen?                
         if (!isNaN(da) && !isNaN(di) && !isNaN(t) && !isNaN(t_strich) && !isNaN(l0)) {
@@ -584,8 +584,8 @@ berechneButton.addEventListener("click", function() {
     //=======================//
 
     // Eingaben holen:
-    let stapel_n_temp = validateAndParseInputOptional(eingabe_stapel_n, 'Stapeldaten - n');
-    let stapel_i_temp = validateAndParseInputOptional(eingabe_stapel_i, 'Stapeldaten - i')
+    let stapel_n_temp = validateAndParseInputOptional(eingabe_stapel_n, 'n');
+    let stapel_i_temp = validateAndParseInputOptional(eingabe_stapel_i, 'i')
 
     // Parallelschaltung.
     if (stapel_n_temp === Infinity) {
@@ -648,9 +648,9 @@ berechneButton.addEventListener("click", function() {
     //==============//
     
     // Eingabe-Werte holen und validieren.
-    let AP = validateAndParseInputOptional(eingabe_AP, "Arbeitspunkt --> AP");
-    let AP_Abweichung_1 = validateAndParseInputOptional(eingabe_AP_Abweichung_1, "Arbeitspunkt --> Punkt 1");
-    let AP_Abweichung_2 = validateAndParseInputOptional(eingabe_AP_Abweichung_2, "Arbeitspunkt --> Punkt 2");
+    let AP = validateAndParseInputOptional(eingabe_AP, "AP");
+    let AP_Abweichung_1 = validateAndParseInputOptional(eingabe_AP_Abweichung_1, "Abweichung 1");
+    let AP_Abweichung_2 = validateAndParseInputOptional(eingabe_AP_Abweichung_2, "Abweichung 2");
     
     let AP_Punkt_1;
     let AP_Punkt_2;
