@@ -12,8 +12,10 @@ const neueBerechnungButton = document.getElementById("neueBerechnungButton");
 
 const plotCanvasElement = document.getElementById('plotCanvas');
 
-const radio12 = document.getElementById('radio12');
-const radio3 = document.getElementById('radio3');
+const radio_12_DIN = document.getElementById('radio_12_DIN');
+const radio_3_DIN = document.getElementById('radio_3_DIN');
+const radio_3_CB = document.getElementById('radio_3_CB');
+const radio_3_custom = document.getElementById('radio_3_custom');
 const inputGroup_t12 = document.getElementById('inputGroup_t12');
 const inputGroup_t3 = document.getElementById('inputGroup_t3');
 const inputGroup_K4 = document.getElementById('inputGroup_K4')
@@ -138,12 +140,20 @@ function validateAndParseInputOptional(inputElement, inputLabel) {
 }
 
 // Funktion, die das Ein- und Ausblenden der zusätzlichen Eingabefelder bei Gruppe 3 regelt.
-function updateSichtbarkeitGruppe3() {
-    if (radio12.checked) {
+function updateSichtbarkeit() {
+    if (radio_12_DIN.checked) {
         inputGroup_t12.style.display = 'flex';
         inputGroup_t3.style.display = 'none';
         inputGroup_K4.style.display = 'none';
-    } else {
+    } else if (radio_3_DIN.checked) {
+        inputGroup_t12.style.display = 'flex';
+        inputGroup_t3.style.display = 'flex';
+        inputGroup_K4.style.display = 'none';
+    } else if (radio_3_CB.checked) {
+        inputGroup_t12.style.display = 'flex';
+        inputGroup_t3.style.display = 'flex';
+        inputGroup_K4.style.display = 'none';
+    } else if (radio_3_custom.checked) {
         inputGroup_t12.style.display = 'flex';
         inputGroup_t3.style.display = 'flex';
         inputGroup_K4.style.display = 'flex';
@@ -308,10 +318,12 @@ function calculate_K4Squared(l0, t) {
 //--------------------------------------------------------------------------\\
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Radio-Elemente "radio12" und "radio3"
+// Radio-Elemente "radio_12_DIN" und "radio_3_DIN"
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-radio12.addEventListener('change', updateSichtbarkeitGruppe3);
-radio3.addEventListener('change', updateSichtbarkeitGruppe3);
+radio_12_DIN.addEventListener('change', updateSichtbarkeit);
+radio_3_DIN.addEventListener('change', updateSichtbarkeit);
+radio_3_CB.addEventListener('change', updateSichtbarkeit);
+radio_3_custom.addEventListener('change', updateSichtbarkeit);
 radioAuswahlFederweg.addEventListener('change', updateArbeitspunktEinheiten);
 radioAuswahlFederkraft.addEventListener('change', updateArbeitspunktEinheiten);
 
@@ -390,7 +402,7 @@ berechneButton.addEventListener("click", function() {
 
     // 1) Prüfung: welches radio-Element ist ausgewählt?
     // Für Gruppe 1&2:
-    if (radio12.checked) { 
+    if (radio_12_DIN.checked) { 
                       
         // Prüfung 2: sind alle Eingaben Zahlen?                                  
         if (!isNaN(da) && !isNaN(di) && !isNaN(t) && !isNaN(l0)) {
@@ -428,7 +440,7 @@ berechneButton.addEventListener("click", function() {
         }
     }
     // Für Gruppe 3:
-    else if (radio3.checked) { 
+    else if (radio_3_DIN.checked) { 
         
         // Abrufen und Prüfen von t_strich (=t').
         let t_strich = validateAndParseInput(eingabe_t_strich, "Geometrie --> t'");
@@ -443,18 +455,12 @@ berechneButton.addEventListener("click", function() {
             c1 = calculate_c1(t_strich, t, l0);
             c2 = calculate_c2(c1, t_strich, t, l0);
             K1 = calculate_K1(delta);
+            K4 = calculate_K4(c1, c2);
 
-            // Bestimmung von K4 je nachdem ob t=t'.
-            if (t !== t_strich) {
-                
-                K4 = calculate_K4(c1, c2);
-
-            } else {
-
-                // Wenn die beiden Werte gleich sind, dann wird K4 aus der Eingabe bestimmt.
-                let K4_parameter = validateAndParseInput(eingabe_K4, "Geometrie --> Kennlinienparameter");
-                K4 = K4_parameter / (h0_strich / t_strich);
+            if (t == t_strich) {
+                alert("t ist gleich t': Entspricht einer Berechnung nach DIN Gruppe 1 und 2");
             }
+                
 
             // Prüfung 3: konnten alle Werte berechnet werden?
             if (!isNaN(h0) && !isNaN(h0_strich) && !isNaN(delta) && !isNaN(c1) && !isNaN(c2) && !isNaN(K1) && !isNaN(K4)) {
@@ -483,6 +489,26 @@ berechneButton.addEventListener("click", function() {
             }
         }
     }
+    else if (radio_3_CB.checked) {
+        alert(`Falsches Radio`);
+        return;
+    }
+    else if (radio_3_custom.checked) {
+        alert(`Falsches Radio 2`);
+        return;
+        // Bestimmung von K4 je nachdem ob t=t'.
+            if (t !== t_strich) {
+                
+                K4 = calculate_K4(c1, c2);
+
+            } else {
+
+                // Wenn die beiden Werte gleich sind, dann wird K4 aus der Eingabe bestimmt.
+                let K4_parameter = validateAndParseInput(eingabe_K4, "Geometrie --> Kennlinienparameter");
+                K4 = K4_parameter / (h0_strich / t_strich);
+            }
+    }
+
 
     //=======================//
     // Stapeldaten einbinden //
@@ -626,12 +652,12 @@ berechneButton.addEventListener("click", function() {
 
                     // Federkraftfunktion erwartet den Federweg der Einzelfeder. Daher skalieren des Federwegs auf eine Einzelfeder, berechnen der Federkraft und dann mit parallel geschalteten Feder wieder hochskalieren.
                     let F_i;
-                    if (radio12.checked) {
+                    if (radio_12_DIN.checked) {
 
                         let s_einzelfeder = s_i / stapel_i; // stapel_i ist die globale Variable!
                         F_i = stapel_n * calculate_F12(E, mu, stapel_t, K1, da, h0, s_einzelfeder);
 
-                    } else if (radio3.checked) {
+                    } else if (radio_3_DIN.checked) {
 
                         let s_einzelfeder = s_i / stapel_i; // stapel_i ist die globale Variable!
                         F_i = stapel_n * calculate_F3(E, mu, stapel_t, K1, da, K4, h0_strich, s_einzelfeder);
@@ -999,12 +1025,14 @@ neueBerechnungButton.addEventListener("click", function() {
         }
     });
 
-    radio12.checked = true;
-    radio3.checked = false;
+    radio_12_DIN.checked = true;
+    radio_3_DIN.checked = false;
+    radio_3_CB.checked = false;
+    radio_3_custom.checked = false;
     radioAuswahlFederweg.checked = true;
     radioAuswahlFederkraft.checked = false;
 
-    updateSichtbarkeitGruppe3();
+    updateSichtbarkeit();
     updateArbeitspunktEinheiten()
 });
 
@@ -1014,5 +1042,5 @@ neueBerechnungButton.addEventListener("click", function() {
 //                    Automatische Aktionen beim Laden                                        
 //--------------------------------------------------------------------------\\
 
-updateSichtbarkeitGruppe3();
+updateSichtbarkeit();
 updateArbeitspunktEinheiten();
