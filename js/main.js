@@ -151,7 +151,7 @@ function updateSichtbarkeit() {
         inputGroup_K4.style.display = 'none';
     } else if (radio_3_CB.checked) {
         inputGroup_t12.style.display = 'flex';
-        inputGroup_t3.style.display = 'flex';
+        inputGroup_t3.style.display = 'none';
         inputGroup_K4.style.display = 'none';
     } else if (radio_3_custom.checked) {
         inputGroup_t12.style.display = 'flex';
@@ -300,7 +300,7 @@ function calculate_F3(E, mu, t, K1, De, K4, h0, s) {
 }
 
 // Kennlinie: K4 nach cb-Werksnorm
-function calculate_K4Squared(l0, t) {
+function calculate_K4_CB(l0, t) {
 
     const term_a = 20 * Math.pow((l0 - t), 2);
     const term_b = 128 * Math.pow(t, 2);
@@ -308,8 +308,9 @@ function calculate_K4Squared(l0, t) {
     
     const zaehler = -term_b + Math.sqrt(Math.pow(term_b, 2) - 4 * term_a * term_c);
     const nenner = 2 * term_a;
+    const K4_squared = zaehler / nenner;
 
-    return zaehler / nenner;
+    return Math.sqrt(K4_squared);
 }
 
 
@@ -491,14 +492,51 @@ berechneButton.addEventListener("click", function() {
     }
     // Für Gruppe 3 nach CB:
     else if (radio_3_CB.checked) {
+                
+        // Setzen von t_strich zu t.
+        let t_strich = t;
 
-        alert(`Falsches Radio`);
-        return;
+        // Prüfung 2: sind alle Eingaben Zahlen?                
+        if (!isNaN(da) && !isNaN(di) && !isNaN(t) && !isNaN(t_strich) && !isNaN(l0)) {
+
+            // Berechnen der konstanten Gleichungen der Kennlinienberechnung.
+            h0 = calculate_h0(l0, t);
+            h0_strich = calculate_h0(l0, t_strich);
+            delta = calculate_delta(da, di);
+            K1 = calculate_K1(delta);
+            K4 = calculate_K4_CB(l0,t);
+                
+            // Prüfung 3: konnten alle Werte berechnet werden?
+            if (!isNaN(h0) && !isNaN(h0_strich) && !isNaN(delta) && !isNaN(K1) && !isNaN(K4)) {
+
+                kennlinie_isValid = true; // Prüfvariable setzen.
+
+                // Kennlinienberechnung von s = 0 bis s = h0.
+                for (let x = 0; x <= h0; x += 0.01) {
+
+                    // Wertepaare berechnen und dem Array übergeben.
+                    let y = calculate_F3(E, mu, t_strich, K1, da, K4, h0_strich, x);
+                    federkennlinieData.push({ x: x, y: y }); 
+                }
+
+                // Sicherstellen, dass der letzte Punkt exakt bei h0 liegt.
+                if (federkennlinieData[federkennlinieData.length - 1].x < h0) {
+                    let y = calculate_F3(E, mu, t_strich, K1, da, K4, h0_strich, h0);
+                    federkennlinieData.push({ x: h0, y: y });
+                }
+
+                // Werte bei 75 % Einfederung bestimmen.
+                stapel_s_075 = 0.75 * h0;
+                stapel_F_075 = calculate_F3(E, mu, t_strich, K1, da, K4, h0_strich, stapel_s_075);
+                // Dicke-Wert der Berechnung für später speichern.
+                stapel_t = t_strich;
+            }
+        }
     }
     // Für Gruppe 3 mit Kennlinienparameter:
     else if (radio_3_custom.checked) {
 
-        // Abrufen und Prüfen von t_strich (=t') und Kennlinienparameter
+        // Abrufen und Prüfen von Kennlinienparameter und Setzen von t_strich zu t.
         let t_strich = t;
         let K4_parameter = validateAndParseInput(eingabe_K4, "Geometrie --> Kennlinienparameter");
 
